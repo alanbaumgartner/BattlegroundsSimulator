@@ -60,8 +60,11 @@ public class Main {
      *
      */
     static {
-        List<String> invalidDeathrattles = Arrays.asList("Ghastcoiler");
+        // Ghastcoiler cannot summon itself and the rest are no longer in the set.
+        List<String> invalidDeathrattles = Arrays.asList("Ghastcoiler", "Piloted Sky Golem", "Mounted Raptor", "Sated Threshadon", "Tortollan Shellraiser");
+        // Boogeymonster is no longer in the set.
         List<String> invalidLegendaries = Arrays.asList("The Boogeymonster");
+        // Tokens cannot be spawned from shredder and Annoy-o-Tron is no longer in the set.
         List<String> invalidTwoCost = Arrays.asList("Amalgam", "Big Bad Wolf", "Hyena", "Vault Safe", "Guard Bot", "Annoy-o-Tron");
 
         TwoCost = new ArrayList<>();
@@ -113,9 +116,6 @@ public class Main {
         for (Card c : Deathrattle) {
             System.out.println("deathrattles:" + c.getName());
         }
-
-//        System.out.println(twocost);
-//        System.out.println(legendaries);
 
     }
 

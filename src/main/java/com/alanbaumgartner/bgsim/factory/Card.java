@@ -2,7 +2,6 @@ package com.alanbaumgartner.bgsim.factory;
 
 import com.alanbaumgartner.bgsim.enums.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class Card {
@@ -36,78 +35,154 @@ public class Card {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getDbfId() {
         return dbfId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getText() {
         return text;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFlavor() {
         return flavor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getArtist() {
         return artist;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getAttack() {
         return attack;
     }
 
+    /**
+     *
+     * @return
+     */
     public CardClass getCardClass() {
         return cardClass;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getCollectible() {
         return collectible;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getCost() {
         return cost;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean getElite() {
         return elite;
     }
 
+    /**
+     *
+     * @return
+     */
     public Faction getFaction() {
         return faction;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getHealth() {
         return health;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Mechanics> getMechanics() {
         return mechanics;
     }
 
+    /**
+     *
+     * @return
+     */
     public Rarity getRarity() {
         return rarity;
     }
 
+    /**
+     *
+     * @return
+     */
     public CardSet getSet() {
         return set;
     }
 
+    /**
+     *
+     * @return
+     */
     public Type getType() {
         return type;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getTechLevel() {
         return techLevel;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getBattlegroundsPremiumDbfId() {
         return battlegroundsPremiumDbfId;
     }
 
+    /**
+     *
+     * @return
+     */
     public Race getRace() {
         return race;
     }
