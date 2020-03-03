@@ -13,13 +13,21 @@ import java.util.List;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Random;
 
 public class Main {
+
+    static Random rand;
 
     /**
      *
      */
     static List<Card> All;
+
+    /**
+     *
+     */
+    static List<Card> BGAll;
 
     /**
      *
@@ -60,6 +68,12 @@ public class Main {
      *
      */
     static {
+        rand = new Random();
+
+
+
+
+
         // Ghastcoiler cannot summon itself and the rest are no longer in the set.
         List<String> invalidDeathrattles = Arrays.asList("Ghastcoiler", "Piloted Sky Golem", "Mounted Raptor", "Sated Threshadon", "Tortollan Shellraiser");
         // Boogeymonster is no longer in the set.
@@ -67,6 +81,7 @@ public class Main {
         // Tokens cannot be spawned from shredder and Annoy-o-Tron is no longer in the set.
         List<String> invalidTwoCost = Arrays.asList("Amalgam", "Big Bad Wolf", "Hyena", "Vault Safe", "Guard Bot", "Annoy-o-Tron");
 
+        BGAll = new ArrayList<>();
         TwoCost = new ArrayList<>();
         Legendary = new ArrayList<>();
         Minions = new ArrayList<>();
@@ -75,8 +90,6 @@ public class Main {
         Tokens = new ArrayList<>();
         Deathrattle = new ArrayList<>();
 
-
-
         try (FileReader fr = new FileReader("src/main/cards.json")) {
             All = Arrays.asList(CardFactory.CreateCards(fr));
         } catch (IOException ex) {
@@ -84,7 +97,20 @@ public class Main {
         }
 
         for (Card c : All) {
-            if (c.getTechLevel() != null && c.getType() == Type.MINION) {
+            if (c.getBattlegroundsPremiumDbfId() != null) {
+                BGAll.add(c);
+                System.out.println(c.getName());
+            } else if (c.getSet() == CardSet.BATTLEGROUNDS && c.getType() == Type.HERO) {
+                Heroes.add(c);
+            } else if (c.getType() == Type.ENCHANTMENT && c.getSet() == CardSet.BATTLEGROUNDS) {
+                Enchantments.add(c);
+            }
+        }
+
+        System.out.println(BGAll.size());
+
+        for (Card c : BGAll) {
+            if (c.getBattlegroundsPremiumDbfId() != null && c.getType() == Type.MINION) {
                 Minions.add(c);
                 if (!c.getId().contains("BaconUps")) {
                     if (c.getCost() == 2 && !invalidTwoCost.contains(c.getName())) {
@@ -98,10 +124,6 @@ public class Main {
                 }
 
 
-            } else if (c.getSet() == CardSet.BATTLEGROUNDS && c.getType() == Type.HERO) {
-                Heroes.add(c);
-            } else if (c.getType() == Type.ENCHANTMENT && c.getSet() == CardSet.BATTLEGROUNDS) {
-                Enchantments.add(c);
             }
         }
 
