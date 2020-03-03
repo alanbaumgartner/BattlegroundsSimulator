@@ -1,0 +1,392 @@
+[
+  {
+    "id": "TB_BaconShop_HERO_01",
+    "dbfId": 57633,
+    "name": "Edwin VanCleef",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_02",
+    "dbfId": 57635,
+    "name": "Galakrond",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_10",
+    "dbfId": 57891,
+    "name": "Trade Prince Gallywix",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_11",
+    "dbfId": 57892,
+    "name": "Ragnaros the Firelord",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_12",
+    "dbfId": 57893,
+    "name": "The Rat King",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_14",
+    "dbfId": 57924,
+    "name": "Queen Wagtoggle",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_15",
+    "dbfId": 57929,
+    "name": "George the Fallen",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_16",
+    "dbfId": 57944,
+    "name": "A. F. Kay",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_17",
+    "dbfId": 57946,
+    "name": "Millificent Manastorm",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_18",
+    "dbfId": 57947,
+    "name": "Patches the Pirate",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_19",
+    "dbfId": 57956,
+    "name": "Giantfin",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_20",
+    "dbfId": 57961,
+    "name": "Professor Putricide",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_21",
+    "dbfId": 58021,
+    "name": "The Great Akazamzarak",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_22",
+    "dbfId": 58024,
+    "name": "The Lich King",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_23",
+    "dbfId": 58027,
+    "name": "Shudderwock",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_25",
+    "dbfId": 58044,
+    "name": "Lich Baz\u0027hial",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_27",
+    "dbfId": 58435,
+    "name": "Sindragosa",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_28",
+    "dbfId": 58534,
+    "name": "Infinite Toki",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_30",
+    "dbfId": 58536,
+    "name": "Nefarian",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_31",
+    "dbfId": 58546,
+    "name": "Bartendotron",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_33",
+    "dbfId": 59203,
+    "name": "The Curator",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_34",
+    "dbfId": 59397,
+    "name": "Patchwerk",
+    "cardClass": "NEUTRAL",
+    "health": 50,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_35",
+    "dbfId": 59805,
+    "name": "Yogg-Saron, Hope\u0027s End",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_36",
+    "dbfId": 59806,
+    "name": "Dancin\u0027 Deryl",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_37",
+    "dbfId": 59807,
+    "name": "Lord Jaraxxus",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_38",
+    "dbfId": 59814,
+    "name": "King Mukla",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_39",
+    "dbfId": 59831,
+    "name": "Pyramad",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_40",
+    "dbfId": 60211,
+    "name": "Sir Finley Mrrgglton",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_41",
+    "dbfId": 60212,
+    "name": "Reno Jackson",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_42",
+    "dbfId": 60213,
+    "name": "Elise Starseeker",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_43",
+    "dbfId": 60214,
+    "name": "Dinotamer Brann",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_44",
+    "dbfId": 60361,
+    "name": "Sylvanas Windrunner",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_45",
+    "dbfId": 60362,
+    "name": "Arch-Villain Rafaam",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_47",
+    "dbfId": 60364,
+    "name": "Tirion Fordring",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_49",
+    "dbfId": 60366,
+    "name": "Millhouse Manastorm",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_52",
+    "dbfId": 60369,
+    "name": "Deathwing",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_53",
+    "dbfId": 60370,
+    "name": "Ysera",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_56",
+    "dbfId": 61488,
+    "name": "Alexstrasza",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_57",
+    "dbfId": 61489,
+    "name": "Nozdormu",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_58",
+    "dbfId": 61490,
+    "name": "Malygos",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_KelThuzad",
+    "dbfId": 59194,
+    "name": "Kel\u0027Thuzad",
+    "cardClass": "NEUTRAL",
+    "health": 0,
+    "mechanics": [
+      null
+    ],
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShop_HERO_PH",
+    "dbfId": 56298,
+    "name": "BaconPHhero",
+    "cardClass": "NEUTRAL",
+    "health": 40,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  },
+  {
+    "id": "TB_BaconShopBob",
+    "dbfId": 57110,
+    "name": "Bob\u0027s Tavern",
+    "cardClass": "NEUTRAL",
+    "health": 60,
+    "set": "BATTLEGROUNDS",
+    "type": "HERO"
+  }
+]

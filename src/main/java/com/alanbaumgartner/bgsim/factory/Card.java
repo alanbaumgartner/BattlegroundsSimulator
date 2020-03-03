@@ -3,6 +3,7 @@ package com.alanbaumgartner.bgsim.factory;
 import com.alanbaumgartner.bgsim.enums.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Card {
 
@@ -19,12 +20,18 @@ public class Card {
     private Boolean elite;
     private Faction faction;
     private Integer health;
-    private Mechanics[] mechanics;
+    private List<Mechanics> mechanics;
     private Rarity rarity;
     private CardSet set;
     private Type type;
     private Integer techLevel;
+    private Integer battlegroundsPremiumDbfId;
+    private Race race;
 
+    /**
+     *
+     * @return
+     */
     public String getId() {
         return id;
     }
@@ -77,7 +84,7 @@ public class Card {
         return health;
     }
 
-    public Mechanics[] getMechanics() {
+    public List<Mechanics> getMechanics() {
         return mechanics;
     }
 
@@ -97,6 +104,14 @@ public class Card {
         return techLevel;
     }
 
+    public Integer getBattlegroundsPremiumDbfId() {
+        return battlegroundsPremiumDbfId;
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
     @Override
     public String toString() {
         return "Card{" +
@@ -113,7 +128,7 @@ public class Card {
                 ", elite=" + elite +
                 ", faction=" + faction +
                 ", health=" + health +
-                ", mechanics=" + Arrays.toString(mechanics) +
+                ", mechanics=" + mechanics.toString() +
                 ", rarity=" + rarity +
                 ", set=" + set +
                 ", type=" + type +

@@ -1,0 +1,878 @@
+[
+  {
+    "id": "BGS_001e",
+    "dbfId": 59187,
+    "name": "Impish",
+    "text": "+2/+2.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_004e",
+    "dbfId": 59671,
+    "name": "Wrath Woven",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_009e",
+    "dbfId": 59709,
+    "name": "Blessed",
+    "text": "Increased stats.",
+    "cardClass": "ROGUE",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_010e",
+    "dbfId": 59715,
+    "name": "Monstrous",
+    "text": "Health increased.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_017e",
+    "dbfId": 59970,
+    "name": "Feral Calling",
+    "text": "+3 Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_018e",
+    "dbfId": 59957,
+    "name": "Soul of the Beast",
+    "text": "+4/+4.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_021e",
+    "dbfId": 60037,
+    "name": "Rampage",
+    "text": "+5/+5.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_028pe",
+    "dbfId": 60125,
+    "name": "PogoCounterEnchantment",
+    "text": "Counts the number of Pogo-Hoppers played.",
+    "cardClass": "ROGUE",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_029e",
+    "dbfId": 57746,
+    "name": "Shifting",
+    "text": "Transforming into random minions.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_030e",
+    "dbfId": 60393,
+    "name": "Bagurgled",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_033e1",
+    "dbfId": 60553,
+    "name": "Well Fed",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_035e",
+    "dbfId": 60560,
+    "name": "Dragon Wax",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_036e",
+    "dbfId": 60562,
+    "name": "Dragonlust",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_037e",
+    "dbfId": 60639,
+    "name": "Time Dilation",
+    "text": "+1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_038e",
+    "dbfId": 60627,
+    "name": "Twilight Embrace",
+    "text": "+3/+3.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_041e",
+    "dbfId": 60644,
+    "name": "Arcane Aspect",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_044e",
+    "dbfId": 61393,
+    "name": "Protect Mama!",
+    "text": "\u003cb\u003eTaunt\u003c/b\u003e",
+    "cardClass": "WARLOCK",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_045e",
+    "dbfId": 61030,
+    "name": "Cold Breath",
+    "text": "Multiplying Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_059e",
+    "dbfId": 61080,
+    "name": "Demonic Fury",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "BGS_067e",
+    "dbfId": 61074,
+    "name": "Divinity",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_1P_PlayerE",
+    "dbfId": 59822,
+    "name": "BaconShop1PlayerEnchant",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_3ofKindChecke",
+    "dbfId": 58736,
+    "name": "3ofKindCheckPlayerEnchant",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_8P_PlayerE",
+    "dbfId": 57980,
+    "name": "BaconShop8PlayerEnchant",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_001e",
+    "dbfId": 60314,
+    "name": "Sharpened Blades",
+    "text": "Increased Stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_014e",
+    "dbfId": 57948,
+    "name": "Frosty",
+    "text": "+1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_015e",
+    "dbfId": 59812,
+    "name": "Tinkered",
+    "text": "+1 Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_017e",
+    "dbfId": 58802,
+    "name": "Murloc King",
+    "text": "\u003cb\u003eDeathrattle:\u003c/b\u003e Summon a 1/1 Murloc.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_018e2",
+    "dbfId": 57963,
+    "name": "Rage Potion",
+    "text": "+10 Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_022e",
+    "dbfId": 58029,
+    "name": "Double Next Battlecry",
+    "text": "\u003cb\u003eHero Power\u003c/b\u003e\nYour next \u003cb\u003eBattlecry\u003c/b\u003e this turn triggers twice.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_024e2",
+    "dbfId": 58043,
+    "name": "Reborn Rite",
+    "text": "\u003cb\u003eReborn\u003c/b\u003e",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_036e2",
+    "dbfId": 59811,
+    "name": "Demonic Draught",
+    "text": "+1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_037te",
+    "dbfId": 59882,
+    "name": "Waxed",
+    "text": "Increased Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_038te",
+    "dbfId": 59817,
+    "name": "Wild Banana",
+    "text": "Has +1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_039e",
+    "dbfId": 59902,
+    "name": "Puzzled",
+    "text": "+1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_040e",
+    "dbfId": 59835,
+    "name": "Built Up",
+    "text": "+3 Health.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_041e",
+    "dbfId": 59842,
+    "name": "Rat Follower",
+    "text": "Has +1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_042e",
+    "dbfId": 59861,
+    "name": "Hat",
+    "text": "+1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_045e",
+    "dbfId": 60220,
+    "name": "Powered Up!",
+    "text": "Increased Stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_048e",
+    "dbfId": 60221,
+    "name": "Battle Branded",
+    "text": "Increased Stats",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_050e",
+    "dbfId": 60374,
+    "name": "Banshee Blessing",
+    "text": "Increased Stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_051e",
+    "dbfId": 60377,
+    "name": "Honorable",
+    "text": "+1/+1.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_Baconshop_HP_054e",
+    "dbfId": 60406,
+    "name": "Manastormed",
+    "text": "Costs (1) less.",
+    "cardClass": "NEUTRAL",
+    "mechanics": [
+      null
+    ],
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_Baconshop_HP_054e2",
+    "dbfId": 61025,
+    "name": "Cost 1 more",
+    "text": "Costs (1) more.",
+    "cardClass": "NEUTRAL",
+    "mechanics": [
+      null
+    ],
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShop_HP_061e",
+    "dbfId": 61407,
+    "name": "ALL Will Burn!",
+    "text": "+3 Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconShopBadsongE",
+    "dbfId": 57226,
+    "name": "Costs 0",
+    "text": "Costs (0).",
+    "cardClass": "DRUID",
+    "mechanics": [
+      null
+    ],
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_008e",
+    "dbfId": 57406,
+    "name": "Mrgglaargl!",
+    "text": "+4 Attack from Murloc Warleader.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_009e",
+    "dbfId": 57407,
+    "name": "Hand of Argus",
+    "text": "+2/+2 and \u003cb\u003eTaunt\u003c/b\u003e.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_011e",
+    "dbfId": 58139,
+    "name": "Blarghghl",
+    "text": "Increased Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_025e",
+    "dbfId": 58169,
+    "name": "Slimed",
+    "text": "+2/+2.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_031e",
+    "dbfId": 58375,
+    "name": "Shellshield",
+    "text": "+2/+2.",
+    "cardClass": "PRIEST",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_032e",
+    "dbfId": 60294,
+    "name": "Replicating Menace",
+    "text": "\u003cb\u003eDeathrattle:\u003c/b\u003e Summon three 2/2 Microbots.",
+    "cardClass": "NEUTRAL",
+    "mechanics": [
+      null
+    ],
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_033e",
+    "dbfId": 58379,
+    "name": "Grown",
+    "text": "Increased Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_037e",
+    "dbfId": 58384,
+    "name": "Huge Ego",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_038e",
+    "dbfId": 58386,
+    "name": "Commanded",
+    "text": "Phalanx Commander is granting this +4 Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_043e",
+    "dbfId": 58396,
+    "name": "Well Fed",
+    "text": "Increased Attack and Health.",
+    "cardClass": "HUNTER",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_044e",
+    "dbfId": 58399,
+    "name": "Ironed Out",
+    "text": "Increased stats.",
+    "cardClass": "ROGUE",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_045e",
+    "dbfId": 58401,
+    "name": "Bronzebeard Battlecry",
+    "text": "Your \u003cb\u003eBattlecries\u003c/b\u003e trigger three times.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_046e",
+    "dbfId": 58404,
+    "name": "Junked Up",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_047e",
+    "dbfId": 58406,
+    "name": "Fading Light",
+    "text": "Increased Attack.",
+    "cardClass": "PALADIN",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_053e",
+    "dbfId": 58419,
+    "name": "Siegebreaking",
+    "text": "Siegebreaker is granting this minion +2 Attack.",
+    "cardClass": "WARLOCK",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_Baconups_055e",
+    "dbfId": 58422,
+    "name": "Rivendare Deathrattle",
+    "text": "Your minions trigger their \u003cb\u003eDeathrattles\u003c/b\u003e three times.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_058e",
+    "dbfId": 58426,
+    "name": "Tasty!",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_060e",
+    "dbfId": 58429,
+    "name": "Grasp of Mal\u0027Ganis",
+    "text": "Mal\u0027Ganis is granting +4/+4.",
+    "cardClass": "WARLOCK",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_061e",
+    "dbfId": 59486,
+    "name": "Trained",
+    "text": "+2/+2",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_062e",
+    "dbfId": 59488,
+    "name": "Impish",
+    "text": "+4/+4.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_063e",
+    "dbfId": 59490,
+    "name": "Well Fed",
+    "text": "+2/+2.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_064e",
+    "dbfId": 59492,
+    "name": "Mrghlglhal",
+    "text": "+4 Health.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_066e",
+    "dbfId": 59496,
+    "name": "Metal Teeth",
+    "text": "+4 Attack.",
+    "cardClass": "HUNTER",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_068e",
+    "dbfId": 59500,
+    "name": "Master\u0027s Presence",
+    "text": "+4/+4 and \u003cb\u003eTaunt\u003c/b\u003e.",
+    "cardClass": "HUNTER",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_069e",
+    "dbfId": 59502,
+    "name": "Screwy Jank",
+    "text": "+4/+4.",
+    "cardClass": "WARRIOR",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_070e",
+    "dbfId": 59505,
+    "name": "Serrated Shadows",
+    "text": "+2/+2.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_072e",
+    "dbfId": 59509,
+    "name": "Strongshell",
+    "text": "+4/+4.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_073e",
+    "dbfId": 59511,
+    "name": "A Simple Trick",
+    "text": "+4/+4.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_074e",
+    "dbfId": 59513,
+    "name": "Get Big",
+    "text": "+4/+4.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_077e",
+    "dbfId": 59665,
+    "name": "Kinetic Energy",
+    "text": "Increased stats.",
+    "cardClass": "ROGUE",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_079e",
+    "dbfId": 59678,
+    "name": "Wrath Woven",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_082e",
+    "dbfId": 59712,
+    "name": "Blessed",
+    "text": "Increased stats.",
+    "cardClass": "ROGUE",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_085e",
+    "dbfId": 59958,
+    "name": "Soul of the Beast",
+    "text": "+8/+8.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_086e",
+    "dbfId": 59972,
+    "name": "Feral Calling",
+    "text": "+6 Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_088e",
+    "dbfId": 60026,
+    "name": "Strength of the Pack",
+    "text": "+2 Attack from {0}.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_090e",
+    "dbfId": 60039,
+    "name": "Rampage",
+    "text": "+10/+10.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_094e",
+    "dbfId": 60057,
+    "name": "Pistons",
+    "text": "Increased Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_095e",
+    "dbfId": 60234,
+    "name": "Shifting",
+    "text": "Transforming into random minions.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_099e",
+    "dbfId": 60328,
+    "name": "Annoy-o-Module",
+    "text": "\u003cb\u003eTaunt\u003c/b\u003e, \u003cb\u003eDivine Shield\u003c/b\u003e.",
+    "cardClass": "PALADIN",
+    "mechanics": [
+      null
+    ],
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_100e",
+    "dbfId": 60397,
+    "name": "Bagurgled",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_101e",
+    "dbfId": 60404,
+    "name": "Brow Furrow",
+    "text": "Increased stats.",
+    "cardClass": "WARLOCK",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_104e",
+    "dbfId": 60646,
+    "name": "Well Fed",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_105e",
+    "dbfId": 60648,
+    "name": "Dragon Wax",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_106e",
+    "dbfId": 60650,
+    "name": "Dragonlust",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_107e",
+    "dbfId": 60664,
+    "name": "Time Dilation",
+    "text": "+2/+2.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_108e",
+    "dbfId": 60666,
+    "name": "Twilight Embrace",
+    "text": "+6/+6.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_109e",
+    "dbfId": 60668,
+    "name": "Arcane Aspect",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_115e",
+    "dbfId": 61031,
+    "name": "Cold Breath",
+    "text": "Multiplying Attack.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_117e",
+    "dbfId": 61076,
+    "name": "Divinity",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_119e",
+    "dbfId": 61082,
+    "name": "Demonic Fury",
+    "text": "Increased stats.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  },
+  {
+    "id": "TB_BaconUps_120e",
+    "dbfId": 61443,
+    "name": "Dragonscales",
+    "text": "Attack increased.",
+    "cardClass": "NEUTRAL",
+    "set": "BATTLEGROUNDS",
+    "type": "ENCHANTMENT"
+  }
+]

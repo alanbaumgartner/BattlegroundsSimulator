@@ -1,4 +1,7 @@
 package com.alanbaumgartner.bgsim;
 
-public class HeroPower {
+public interface HeroPower {
+
+	void activate();
+
 }
