@@ -1,5 +1,6 @@
 package com.alanbaumgartner.bgsim.factory;
 
+import com.alanbaumgartner.bgsim.Card;
 import com.google.gson.Gson;
 
 import java.io.FileReader;

@@ -1,10 +1,8 @@
 package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.enums.CardSet;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 import com.alanbaumgartner.bgsim.enums.Rarity;
 import com.alanbaumgartner.bgsim.enums.Type;
-import com.alanbaumgartner.bgsim.factory.Card;
 import com.alanbaumgartner.bgsim.factory.CardFactory;
 
 import java.util.ArrayList;
@@ -97,12 +95,12 @@ public class Main {
         }
 
         for (Card c : All) {
-            if (c.getBattlegroundsPremiumDbfId() != null) {
+            if (c.getTechLevel() != null) {
                 BGAll.add(c);
                 System.out.println(c.getName());
-            } else if (c.getSet() == CardSet.BATTLEGROUNDS && c.getType() == Type.HERO) {
+            } else if (c.getType() == Type.HERO) {
                 Heroes.add(c);
-            } else if (c.getType() == Type.ENCHANTMENT && c.getSet() == CardSet.BATTLEGROUNDS) {
+            } else if (c.getType() == Type.ENCHANTMENT) {
                 Enchantments.add(c);
             }
         }
@@ -110,7 +108,7 @@ public class Main {
         System.out.println(BGAll.size());
 
         for (Card c : BGAll) {
-            if (c.getBattlegroundsPremiumDbfId() != null && c.getType() == Type.MINION) {
+            if (c.getTechLevel() != null && c.getType() == Type.MINION) {
                 Minions.add(c);
                 if (!c.getId().contains("BaconUps")) {
                     if (c.getCost() == 2 && !invalidTwoCost.contains(c.getName())) {

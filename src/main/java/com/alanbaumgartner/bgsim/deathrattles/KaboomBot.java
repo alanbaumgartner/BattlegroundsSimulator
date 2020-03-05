@@ -1,7 +1,7 @@
 package com.alanbaumgartner.bgsim.deathrattles;
 
 import com.alanbaumgartner.bgsim.Deathrattle;
-import com.alanbaumgartner.bgsim.factory.Card;
+import com.alanbaumgartner.bgsim.Card;
 
 import java.util.List;
 

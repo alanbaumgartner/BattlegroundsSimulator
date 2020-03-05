@@ -1,6 +1,5 @@
-package com.alanbaumgartner.bgsim.factory;
+package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.*;
 
 import java.util.List;
@@ -8,27 +7,30 @@ import java.util.List;
 public class Card {
 
     // Json Variables
-    private String id;
-    private Integer dbfId;
     private String name;
     private Integer attack;
-    private CardClass cardClass;
-    private Integer cost;
-    private Boolean elite;
     private Integer health;
-    private List<Mechanics> mechanics;
     private Rarity rarity;
-    private CardSet set;
-    private Type type;
-    private Integer techLevel;
-    private Integer battlegroundsPremiumDbfId;
     private Race race;
+    private Integer techLevel;
+    private List<Mechanics> mechanics;
+
+    private String id;
+    private Integer cost;
+    private Type type;
 
     //
     private Deathrattle deathrattle;
 
-    // Combat instance variables
+
+    // Non JSON variables
     private Boolean dead;
+    private Boolean gold;
+
+    public void Initialize() {
+        dead = false;
+        gold = id.contains("BaconUps");
+    }
 
 
     public void Attack(Card c) {
@@ -69,26 +71,6 @@ public class Card {
         }
     }
 
-    public Deathrattle Die() {
-
-
-        return null;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public void setAttack(Integer attack) {
         this.attack = attack;
     }
@@ -101,8 +83,18 @@ public class Card {
         this.dead = dead;
     }
 
-    // Getters
+    /**
+     *
+     * @return Card's deathrattle or null if none.
+     */
+    public Deathrattle getDeathrattle() {
+        return deathrattle;
+    }
 
+    /**
+     *
+     * @return Whether the card is dead.
+     */
     public Boolean getDead() {
         return dead;
     }
@@ -113,14 +105,6 @@ public class Card {
      */
     public String getId() {
         return id;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Integer getDbfId() {
-        return dbfId;
     }
 
     /**
@@ -141,27 +125,10 @@ public class Card {
 
     /**
      *
-     * @return Card's class affiliation, possible values found in CardClass
-     */
-    public CardClass getCardClass() {
-        return cardClass;
-    }
-
-
-    /**
-     *
      * @return Mana cost to play the card.
      */
     public Integer getCost() {
         return cost;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public Boolean getElite() {
-        return elite;
     }
 
     /**
@@ -190,14 +157,6 @@ public class Card {
 
     /**
      *
-     * @return Card's set, full list can be found in CardSet.
-     */
-    public CardSet getSet() {
-        return set;
-    }
-
-    /**
-     *
      * @return Card's type, such as minion, hero, enchantment. A full list can be found in Type.
      */
     public Type getType() {
@@ -214,14 +173,6 @@ public class Card {
 
     /**
      *
-     * @return
-     */
-    public Integer getBattlegroundsPremiumDbfId() {
-        return battlegroundsPremiumDbfId;
-    }
-
-    /**
-     *
      * @return Card's race, or more commonly known as a Tribe. A full list can be found in Race.
      */
     public Race getRace() {
@@ -232,16 +183,12 @@ public class Card {
     public String toString() {
         return "Card{" +
                 "id='" + id + '\'' +
-                ", dbfId=" + dbfId +
                 ", name='" + name + '\'' +
                 ", attack=" + attack +
-                ", cardClass=" + cardClass +
                 ", cost=" + cost +
-                ", elite=" + elite +
                 ", health=" + health +
                 ", mechanics=" + mechanics.toString() +
                 ", rarity=" + rarity +
-                ", set=" + set +
                 ", type=" + type +
                 ", techLevel=" + techLevel +
                 '}';

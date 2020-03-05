@@ -1,12 +1,10 @@
 package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.factory.Card;
-
 import java.util.List;
 
 public class Board {
 
-	private Integer turnNumber;
+	private Integer step;
 	private Integer playerTurn;
 
 	private Integer[] attackingMinion;
@@ -14,7 +12,7 @@ public class Board {
 	private Player[] players;
 
 	public Board(Player one, Player two) {
-		turnNumber = 0;
+		step = 0;
 		playerTurn = 0;
 		attackingMinion = new Integer[2];
 
@@ -26,10 +24,21 @@ public class Board {
 	}
 
 	public void simulate() {
+		Integer score = 0;
+		Integer winner = 0;
+		while(true) {
+			if (players[0].getMinions().size() == 0) {
+				winner = 1;
+			}
+			if (players[1].getMinions().size() == 0) {
+				winner = 2;
+			}
+		}
+
 
 	}
 
-	public void takeTurn() {
+	public void doStep() {
 		Integer attackerIndex = playerTurn;
 		Integer defenderIndex = 1 - playerTurn;
 
@@ -45,7 +54,28 @@ public class Board {
 		} else {
 			defender = tauntMinions.get(Main.rand.nextInt(tauntMinions.size()));
 		}
+		if (attacker.getDead()) {
+			HandleDeathrattle(playerTurn, attacker.getDeathrattle());
+		}
+		if (defender.getDead()) {
+			HandleDeathrattle(1 - playerTurn, defender.getDeathrattle());
+		}
+		step++;
+	}
 
+	private void HandleDeathrattle(Integer ownerIndex, Deathrattle deathrattle) {
+		if (deathrattle == null) {
+			return;
+		}
+		switch (deathrattle.getType()) {
+			case BUFF:
+			case SUMMON:
+				deathrattle.Simulate(players[ownerIndex].getMinions());
+				break;
+			case ATTACK:
+				deathrattle.Simulate(players[1 - ownerIndex].getMinions());
+				break;
+		}
 	}
 
 

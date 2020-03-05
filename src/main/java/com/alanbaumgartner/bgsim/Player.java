@@ -1,7 +1,6 @@
 package com.alanbaumgartner.bgsim;
 
 import com.alanbaumgartner.bgsim.enums.Mechanics;
-import com.alanbaumgartner.bgsim.factory.Card;
 import com.alanbaumgartner.bgsim.enums.Hero;
 
 import java.util.List;
