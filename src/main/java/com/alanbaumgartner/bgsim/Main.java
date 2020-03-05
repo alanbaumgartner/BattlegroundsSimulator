@@ -151,8 +151,8 @@ public class Main {
 
         int[] scores = {0,0,0};
         int[] won = {0,0,0};
-        Player one1 = new Player(new ArrayList(Arrays.asList(BGAll.get(69).clone(), BGAll.get(70).clone())));
-        Player two2 = new Player(new ArrayList(Arrays.asList(BGAll.get(86).clone(), BGAll.get(70).clone())));
+        Player one1 = new Player(new ArrayList(Arrays.asList(BGAll.get(0).clone())));
+        Player two2 = new Player(new ArrayList(Arrays.asList(BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(69).clone())));
 
         for (int i = 0; i < 100000; i++) {
             Player one = new Player(one1);

@@ -1,5 +1,6 @@
 package com.alanbaumgartner.bgsim;
 
+import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.*;
 
 import java.util.ArrayList;
@@ -53,22 +54,20 @@ public class Card implements Cloneable {
         if (defenderMechanics.contains(Mechanics.DIVINE_SHIELD)) {
             c.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
-            defenderHealth -= this.attack;
-            if (this.mechanics.contains(Mechanics.POISONOUS) || defenderHealth <= 0) {
+            c.setHealth(defenderHealth -= this.attack);
+            if (this.mechanics.contains(Mechanics.POISONOUS) || c.getHealth() <= 0) {
                 c.setDead(true);
             }
-            c.setHealth(defenderHealth);
         }
 
         // Handle Defender Damage
         if (this.getMechanics().contains(Mechanics.DIVINE_SHIELD)) {
             this.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
-            this.health -= defenderAttack;
+            this.setHealth(this.health -= defenderAttack);
             if (c.getMechanics().contains(Mechanics.POISONOUS) || this.health <= 0) {
                 this.setDead(true);
             }
-            this.setHealth(defenderHealth);
         }
     }
 

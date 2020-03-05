@@ -1,5 +1,7 @@
 package com.alanbaumgartner.bgsim;
 
+import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
+
 import java.util.List;
 
 public class Board {
