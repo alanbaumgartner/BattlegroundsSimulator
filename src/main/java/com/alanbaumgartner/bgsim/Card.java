@@ -2,9 +2,10 @@ package com.alanbaumgartner.bgsim;
 
 import com.alanbaumgartner.bgsim.enums.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Card {
+public class Card implements Cloneable {
 
     // Json Variables
     private String name;
@@ -27,13 +28,23 @@ public class Card {
     private Boolean dead = false;
     private Boolean gold;
 
-    public void Initialize() {
-        dead = false;
-        gold = id.contains("BaconUps");
+
+    public void init() {
+        if (mechanics == null) {
+            mechanics = new ArrayList<>();
+        }
     }
 
+    @Override
+    protected Object clone() {
+        try {
+            return super.clone();
+        } catch(CloneNotSupportedException ex) {
+            return null;
+        }
+    }
 
-    public void Attack(Card c) {
+    public void attack(Card c) {
         Integer defenderAttack = c.getAttack();
         Integer defenderHealth = c.getHealth();
         List<Mechanics> defenderMechanics = c.getMechanics();
@@ -42,32 +53,22 @@ public class Card {
         if (defenderMechanics.contains(Mechanics.DIVINE_SHIELD)) {
             c.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
-            if (this.mechanics.contains(Mechanics.POISONOUS)) {
+            defenderHealth -= this.attack;
+            if (this.mechanics.contains(Mechanics.POISONOUS) || defenderHealth <= 0) {
                 c.setDead(true);
-            } else {
-                defenderHealth -= this.attack;
-                if (defenderHealth <= 0) {
-                    c.setDead(true);
-                } else {
-                    c.setHealth(defenderHealth);
-                }
             }
+            c.setHealth(defenderHealth);
         }
 
         // Handle Defender Damage
         if (this.getMechanics().contains(Mechanics.DIVINE_SHIELD)) {
             this.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
-            if (c.getMechanics().contains(Mechanics.POISONOUS)) {
+            this.health -= defenderAttack;
+            if (c.getMechanics().contains(Mechanics.POISONOUS) || this.health <= 0) {
                 this.setDead(true);
-            } else {
-                this.health -= defenderAttack;
-                if (this.health <= 0) {
-                    this.setDead(true);
-                } else {
-                    this.setHealth(defenderHealth);
-                }
             }
+            this.setHealth(defenderHealth);
         }
     }
 
@@ -187,7 +188,7 @@ public class Card {
                 ", attack=" + attack +
                 ", cost=" + cost +
                 ", health=" + health +
-                ", mechanics=" + mechanics.toString() +
+//                ", mechanics=" + mechanics.toString() +
                 ", rarity=" + rarity +
                 ", type=" + type +
                 ", techLevel=" + techLevel +

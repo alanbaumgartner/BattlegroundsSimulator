@@ -95,6 +95,9 @@ public class Main {
         }
 
         for (Card c : All) {
+            if (c.getMechanics() == null) {
+                c.init();
+            }
             if (c.getTechLevel() != null) {
                 BGAll.add(c);
             } else if (c.getType() == Type.HERO) {
@@ -104,7 +107,7 @@ public class Main {
             }
         }
 
-        System.out.println(BGAll.size());
+//        System.out.println(BGAll.size());
 
         for (Card c : BGAll) {
             if (c.getTechLevel() != null && c.getType() == Type.MINION) {
@@ -124,8 +127,10 @@ public class Main {
             }
         }
 
+//        int i = 0;
 //        for (Card c : BGAll) {
-//            System.out.println(c.getName());
+//            System.out.println(c.getName() + i);
+//            i++;
 //        }
 
 //        for (Card c : TwoCost) {
@@ -142,67 +147,39 @@ public class Main {
 
     }
 
-    /**
-     *
-     */
     public static void main(String[] args) {
 
-        Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(0))));
-        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(1), BGAll.get(1))));
+        int[] scores = {0,0,0};
+        int[] won = {0,0,0};
+        Player one1 = new Player(new ArrayList(Arrays.asList(BGAll.get(69).clone(), BGAll.get(70).clone())));
+        Player two2 = new Player(new ArrayList(Arrays.asList(BGAll.get(86).clone(), BGAll.get(70).clone())));
 
-        System.out.println(one.getMinions());
-        System.out.println(two.getMinions());
-
-        Board b = new Board(one, two);
-        b.simulate();
-
-
-//        Stream<Card> bgdm = bgminions.filter(p -> !p.getId().contains("baconUps") && Arrays.asList(p.getMechanics()).contains(Mechanics.DEATHRATTLE));
-//        Stream<Card> bgminions = Arrays.stream(cards).filter(p -> p.getTechLevel() != null && p.getType() == Type.MINION);
-
-//        for (Object c : bgminions.toArray()) {
-//            Card a = (Card) c;
-//            if (!a.getId().contains("BaconUps"))
-//            System.out.println(a.getName());
-//        }
-
-
-
-//        Stream<Card> bgminions = Arrays.stream(cards).filter(p -> p.getTechLevel() != null && p.getType() == Type.MINION);
-
-//        Stream<Card> heroes = Arrays.stream(cards).filter(p -> p.getType() == Type.HERO && p.getSet() == CardSet.BATTLEGROUNDS);
+        for (int i = 0; i < 100000; i++) {
+            Player one = new Player(one1);
+            Player two = new Player(two2);
 //
-//        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-//
-//        gson.toJson(bgheroes.toArray(), fw1);
-//        gson.toJson(bgminions.toArray(), fw2);
-//        gson.toJson(bgenchantments.toArray(), fw3);
-//
-//
-//
-//        fw1.flush();
-//        fw2.flush();
-//        fw3.flush();
-//        fw1.close();
-//        fw2.close();
-//        fw3.close();
-
-//        System.out.println(bgminions.count());
-//        System.out.println(bgheroes.count());
-//        System.out.println(bgenchantments.count());
-
-//        System.out.println();
-
-//        System.out.println(heroes);
-
-//        System.out.println(bg.count());
-//        for (Object c : bgheroes.toArray()) {
-//            Card a = (Card) c;
-//            String name = a.getName();
-//
-//            System.out.println("@SerializedName(\"" + name + "\") " + name.replace(" ", "").replace("'", "").replace(".", "").toUpperCase());
-//        }
-
+            Board b = new Board(one, two);
+            b.simulate();
+            switch (b.winner) {
+                case 1:
+                    won[0]++;
+//                    scores[0] += b.score;
+                    break;
+                case 2:
+                    won[1]++;
+//                    scores[1] += b.score;
+                    break;
+                case 3:
+                    won[2]++;
+                    break;
+                case 0:
+                    System.out.println("here");
+            }
+            one = null;
+            two = null;
+            b = null;
+        }
+            System.out.println(won[0] + " " + won[1] + " " + won[2]);
     }
 
 }

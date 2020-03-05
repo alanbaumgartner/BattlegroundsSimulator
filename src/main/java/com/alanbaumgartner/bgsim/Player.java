@@ -10,13 +10,29 @@ import java.util.stream.Collectors;
 public class Player {
 
 	private Integer health;
+	private Integer tier;
 	private Hero hero;
 	private List<Card> minions;
 
+	public Player(Player copy) {
+		health = copy.health;
+		tier = copy.tier;
+		hero = copy.hero;
+		minions = new ArrayList<>();
+		for (Card c : copy.getMinions()) {
+			minions.add((Card) c.clone());
+		}
+	}
+
 	public Player(List<Card> minions) {
 		this.minions = minions;
-		health = 40;
-		hero = Hero.DEATHWING;
+		this.health = 40;
+		this.tier = 1;
+		this.hero = Hero.DEATHWING;
+	}
+
+	public Integer getTier() {
+		return tier;
 	}
 
 	public List<Card> getTauntMinions() {
