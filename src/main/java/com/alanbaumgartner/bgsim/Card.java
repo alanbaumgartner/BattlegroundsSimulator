@@ -24,7 +24,7 @@ public class Card {
 
 
     // Non JSON variables
-    private Boolean dead;
+    private Boolean dead = false;
     private Boolean gold;
 
     public void Initialize() {

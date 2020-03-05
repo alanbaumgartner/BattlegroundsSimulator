@@ -97,7 +97,6 @@ public class Main {
         for (Card c : All) {
             if (c.getTechLevel() != null) {
                 BGAll.add(c);
-                System.out.println(c.getName());
             } else if (c.getType() == Type.HERO) {
                 Heroes.add(c);
             } else if (c.getType() == Type.ENCHANTMENT) {
@@ -125,24 +124,39 @@ public class Main {
             }
         }
 
-        for (Card c : TwoCost) {
-            System.out.println("Twocost:" + c.getName());
-        }
+//        for (Card c : BGAll) {
+//            System.out.println(c.getName());
+//        }
 
-        for (Card c : Legendary) {
-            System.out.println("legendaries:" + c.getName());
-        }
-
-        for (Card c : Deathrattle) {
-            System.out.println("deathrattles:" + c.getName());
-        }
+//        for (Card c : TwoCost) {
+//            System.out.println("Twocost:" + c.getName());
+//        }
+//
+//        for (Card c : Legendary) {
+//            System.out.println("legendaries:" + c.getName());
+//        }
+//
+//        for (Card c : Deathrattle) {
+//            System.out.println("deathrattles:" + c.getName());
+//        }
 
     }
 
     /**
      *
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+
+        Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(0))));
+        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(1), BGAll.get(1))));
+
+        System.out.println(one.getMinions());
+        System.out.println(two.getMinions());
+
+        Board b = new Board(one, two);
+        b.simulate();
+
+
 //        Stream<Card> bgdm = bgminions.filter(p -> !p.getId().contains("baconUps") && Arrays.asList(p.getMechanics()).contains(Mechanics.DEATHRATTLE));
 //        Stream<Card> bgminions = Arrays.stream(cards).filter(p -> p.getTechLevel() != null && p.getType() == Type.MINION);
 
