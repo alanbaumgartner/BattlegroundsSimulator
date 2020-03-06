@@ -5,7 +5,7 @@ import com.alanbaumgartner.bgsim.enums.DType;
 
 import java.util.List;
 
-public class FiendishServant implements Deathrattle {
+public class FiendishServant extends Deathrattle {
     DType type = DType.BUFF;
 
     @Override

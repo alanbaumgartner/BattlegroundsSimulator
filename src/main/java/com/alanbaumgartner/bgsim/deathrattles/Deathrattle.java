@@ -5,11 +5,13 @@ import com.alanbaumgartner.bgsim.enums.DType;
 
 import java.util.List;
 
-public interface Deathrattle {
+public abstract class Deathrattle {
     DType type = null;
     Boolean golden = null;
 
-    void Simulate(List<Card> cards);
+    abstract void Simulate(List<Card> cards);
 
-    DType getType();
+    DType getType() {
+        return this.type;
+    }
 }
