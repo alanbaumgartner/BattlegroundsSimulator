@@ -5,12 +5,11 @@ import com.alanbaumgartner.bgsim.enums.Rarity;
 import com.alanbaumgartner.bgsim.enums.Type;
 import com.alanbaumgartner.bgsim.factory.CardFactory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -69,9 +68,6 @@ public class Main {
         rand = new Random();
 
 
-
-
-
         // Ghastcoiler cannot summon itself and the rest are no longer in the set.
         List<String> invalidDeathrattles = Arrays.asList("Ghastcoiler", "Piloted Sky Golem", "Mounted Raptor", "Sated Threshadon", "Tortollan Shellraiser");
         // Boogeymonster is no longer in the set.
@@ -117,8 +113,7 @@ public class Main {
                         TwoCost.add(c);
                     } else if (c.getRarity() == Rarity.LEGENDARY && !invalidLegendaries.contains(c.getName())) {
                         Legendary.add(c);
-                    }
-                    else if (!invalidDeathrattles.contains(c.getName()) && c.getMechanics() != null && c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
+                    } else if (!invalidDeathrattles.contains(c.getName()) && c.getMechanics() != null && c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
                         Deathrattle.add(c);
                     }
                 }
@@ -149,37 +144,11 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[] scores = {0,0,0};
-        int[] won = {0,0,0};
-        Player one1 = new Player(new ArrayList(Arrays.asList(BGAll.get(0).clone())));
-        Player two2 = new Player(new ArrayList(Arrays.asList(BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(69).clone())));
+        Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(0).clone())));
+        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(69).clone())));
+        Simulation sim = new Simulation(one, two, 10000);
+        sim.simulate();
 
-        for (int i = 0; i < 100000; i++) {
-            Player one = new Player(one1);
-            Player two = new Player(two2);
-//
-            Board b = new Board(one, two);
-            b.simulate();
-            switch (b.winner) {
-                case 1:
-                    won[0]++;
-//                    scores[0] += b.score;
-                    break;
-                case 2:
-                    won[1]++;
-//                    scores[1] += b.score;
-                    break;
-                case 3:
-                    won[2]++;
-                    break;
-                case 0:
-                    System.out.println("here");
-            }
-            one = null;
-            two = null;
-            b = null;
-        }
-            System.out.println(won[0] + " " + won[1] + " " + won[2]);
     }
 
 }

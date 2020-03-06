@@ -1,7 +1,10 @@
 package com.alanbaumgartner.bgsim;
 
 import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
-import com.alanbaumgartner.bgsim.enums.*;
+import com.alanbaumgartner.bgsim.enums.Mechanics;
+import com.alanbaumgartner.bgsim.enums.Race;
+import com.alanbaumgartner.bgsim.enums.Rarity;
+import com.alanbaumgartner.bgsim.enums.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +43,7 @@ public class Card implements Cloneable {
     protected Object clone() {
         try {
             return super.clone();
-        } catch(CloneNotSupportedException ex) {
+        } catch (CloneNotSupportedException ex) {
             return null;
         }
     }
@@ -71,20 +74,7 @@ public class Card implements Cloneable {
         }
     }
 
-    public void setAttack(Integer attack) {
-        this.attack = attack;
-    }
-
-    public void setHealth(Integer health) {
-        this.health = health;
-    }
-
-    public void setDead(Boolean dead) {
-        this.dead = dead;
-    }
-
     /**
-     *
      * @return Card's deathrattle or null if none.
      */
     public Deathrattle getDeathrattle() {
@@ -92,15 +82,17 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Whether the card is dead.
      */
     public Boolean getDead() {
         return dead;
     }
 
+    public void setDead(Boolean dead) {
+        this.dead = dead;
+    }
+
     /**
-     *
      * @return
      */
     public String getId() {
@@ -108,7 +100,6 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Card's name
      */
     public String getName() {
@@ -116,15 +107,17 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Card's attack value
      */
     public Integer getAttack() {
         return attack;
     }
 
+    public void setAttack(Integer attack) {
+        this.attack = attack;
+    }
+
     /**
-     *
      * @return Mana cost to play the card.
      */
     public Integer getCost() {
@@ -132,15 +125,17 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Card's health value
      */
     public Integer getHealth() {
         return health;
     }
 
+    public void setHealth(Integer health) {
+        this.health = health;
+    }
+
     /**
-     *
      * @return Card's mechanics, full list can be found in Mechanics.
      */
     public List<Mechanics> getMechanics() {
@@ -148,7 +143,6 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Card's raroty, full list can be found in Rarity.
      */
     public Rarity getRarity() {
@@ -156,7 +150,6 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Card's type, such as minion, hero, enchantment. A full list can be found in Type.
      */
     public Type getType() {
@@ -164,7 +157,6 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Card's tech level or the tavern tier at which it can be found/bought.
      */
     public Integer getTechLevel() {
@@ -172,7 +164,6 @@ public class Card implements Cloneable {
     }
 
     /**
-     *
      * @return Card's race, or more commonly known as a Tribe. A full list can be found in Race.
      */
     public Race getRace() {

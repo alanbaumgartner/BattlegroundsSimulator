@@ -1,6 +1,6 @@
 package com.alanbaumgartner.bgsim.enums;
 
-public enum Mechanics{
+public enum Mechanics {
     TRIGGER_VISUAL,
     ELITE,
     CARD_SET,

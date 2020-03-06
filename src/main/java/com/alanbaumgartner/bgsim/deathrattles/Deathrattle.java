@@ -9,7 +9,7 @@ public interface Deathrattle {
     DType type = null;
     Boolean golden = null;
 
-    public void Simulate(List<Card> cards);
+    void Simulate(List<Card> cards);
 
     DType getType();
 }
