@@ -1,8 +1,6 @@
 package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
-
-import java.util.List;
+import java.util.*;
 
 public class Board {
 
@@ -10,7 +8,8 @@ public class Board {
     public Integer winner = 0;
     private Integer step = 0;
     private Integer playerTurn;
-    private Integer[] attackingMinion = new Integer[2];
+
+    private Deque<Card>[] attackQueues = new Deque[2];
     private Player[] players = new Player[2];
 
     public Board(Player one, Player two) {
@@ -18,15 +17,14 @@ public class Board {
         Integer p1Minions = one.getNumMinions();
         Integer p2Minions = two.getNumMinions();
         if (p1Minions.equals(p2Minions)) {
-            playerTurn = Main.rand.nextInt(1);
+            playerTurn = Main.getRandomInteger(1);
         } else {
             playerTurn = p1Minions > p2Minions ? 0 : 1;
         }
-        playerTurn = Main.rand.nextInt(1);
-        attackingMinion[0] = 0;
-        attackingMinion[1] = 0;
         players[0] = one;
         players[1] = two;
+        attackQueues[0] = new LinkedList<>(one.getMinions());
+        attackQueues[1] = new LinkedList<>(two.getMinions());
     }
 
     public void simulate() {
@@ -60,10 +58,9 @@ public class Board {
     }
 
     public Card getAttackingMinion() {
-        attackingMinion[playerTurn] = Math.min(players[playerTurn].getNumMinions() - 1, attackingMinion[playerTurn]);
-        Card c = players[playerTurn].getMinions().get(attackingMinion[playerTurn]);
-        attackingMinion[playerTurn]++;
-        return c;
+        Card attacker = attackQueues[playerTurn].remove();
+        attackQueues[playerTurn].add(attacker);
+        return attacker;
     }
 
     public Card getDefendingMinion() {
@@ -71,10 +68,10 @@ public class Board {
         Card defender;
         List<Card> tauntMinions = players[1 - playerTurn].getTauntMinions();
         if (tauntMinions.isEmpty()) {
-            index = Main.rand.nextInt(players[1 - playerTurn].getMinions().size());
+            index = Main.getRandomInteger(players[1 - playerTurn].getMinions().size());
             defender = players[1 - playerTurn].getMinions().get(index);
         } else {
-            index = Main.rand.nextInt(tauntMinions.size());
+            index = Main.getRandomInteger(tauntMinions.size());
             defender = tauntMinions.get(index);
         }
         return defender;
@@ -84,32 +81,37 @@ public class Board {
         Card attacker = getAttackingMinion();
         Card defender = getDefendingMinion();
 
-        attacker.attack(defender);
-//		System.out.println(attacker +" "+ defender);
+//        System.out.println("Step: " + step);
+//        System.out.println("Attack: " + attacker.getName());
+//        System.out.println("Defender: " + defender.getName() + "\n");
 
-        if (attacker.getDead()) {
-//			handleDeathrattle(playerTurn, attacker.getDeathrattle());
+        attacker.attack(defender);
+
+        if (attacker.isDead()) {
+            attackQueues[playerTurn].remove(attacker);
             players[playerTurn].removeMinion(attacker);
+			handleDeathrattle(playerTurn, attacker);
         }
-        if (defender.getDead()) {
-//			handleDeathrattle(1 - playerTurn, defender.getDeathrattle());
+        if (defender.isDead()) {
+            attackQueues[1 - playerTurn].remove(defender);
             players[1 - playerTurn].removeMinion(defender);
+			handleDeathrattle(1 - playerTurn, defender);
         }
         step++;
         playerTurn = 1 - playerTurn;
     }
 
-    private void handleDeathrattle(Integer ownerIndex, Deathrattle deathrattle) {
-        if (deathrattle == null) {
+    private void handleDeathrattle(Integer ownerIndex, Card card) {
+        if (card.getDeathrattle() == null) {
             return;
         }
-        switch (deathrattle.getType()) {
+        switch (card.getDeathrattle().getType()) {
             case BUFF:
             case SUMMON:
-                deathrattle.Simulate(players[ownerIndex].getMinions());
+                card.getDeathrattle().Simulate(card, players[ownerIndex].getMinions());
                 break;
             case ATTACK:
-                deathrattle.Simulate(players[1 - ownerIndex].getMinions());
+                card.getDeathrattle().Simulate(card, players[1 - ownerIndex].getMinions());
                 break;
         }
     }

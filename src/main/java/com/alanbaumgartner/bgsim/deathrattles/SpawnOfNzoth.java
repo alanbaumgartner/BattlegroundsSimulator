@@ -5,14 +5,13 @@ import com.alanbaumgartner.bgsim.enums.DType;
 
 import java.util.List;
 
-public class SpawnOfNzoth implements Deathrattle {
+public class SpawnOfNzoth extends Deathrattle {
+    static DType type = DType.BUFF;
+
     @Override
-    public void Simulate(List<Card> cards) {
+    public void Simulate(Card card, List<Card> cards) {
 
     }
 
-    @Override
-    public DType getType() {
-        return null;
-    }
+
 }

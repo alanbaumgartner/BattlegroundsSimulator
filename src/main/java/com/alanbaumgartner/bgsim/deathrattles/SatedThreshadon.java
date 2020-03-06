@@ -5,14 +5,13 @@ import com.alanbaumgartner.bgsim.enums.DType;
 
 import java.util.List;
 
-public class SatedThreshadon implements Deathrattle {
+public class SatedThreshadon extends Deathrattle {
+    static DType type = DType.SUMMON;
+
     @Override
-    public void Simulate(List<Card> cards) {
+    public void Simulate(Card card, List<Card> cards) {
 
     }
 
-    @Override
-    public DType getType() {
-        return null;
-    }
+
 }

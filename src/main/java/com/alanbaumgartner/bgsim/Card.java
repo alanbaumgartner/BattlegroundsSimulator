@@ -27,10 +27,22 @@ public class Card implements Cloneable {
     //
     private Deathrattle deathrattle;
 
+    public void setDeathrattle(Deathrattle deathrattle) {
+        this.deathrattle = deathrattle;
+    }
 
     // Non JSON variables
     private Boolean dead = false;
-    private Boolean gold;
+
+    private Boolean gold = false;
+
+    public Boolean isGold() {
+        return gold;
+    }
+
+    public void setGold(Boolean gold) {
+        this.gold = gold;
+    }
 
 
     public void init() {
@@ -84,7 +96,7 @@ public class Card implements Cloneable {
     /**
      * @return Whether the card is dead.
      */
-    public Boolean getDead() {
+    public Boolean isDead() {
         return dead;
     }
 
@@ -178,7 +190,7 @@ public class Card implements Cloneable {
                 ", attack=" + attack +
                 ", cost=" + cost +
                 ", health=" + health +
-//                ", mechanics=" + mechanics.toString() +
+                ", mechanics=" + mechanics.toString() +
                 ", rarity=" + rarity +
                 ", type=" + type +
                 ", techLevel=" + techLevel +

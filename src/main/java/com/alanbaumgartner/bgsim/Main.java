@@ -1,20 +1,32 @@
 package com.alanbaumgartner.bgsim;
 
+import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 import com.alanbaumgartner.bgsim.enums.Rarity;
 import com.alanbaumgartner.bgsim.enums.Type;
 import com.alanbaumgartner.bgsim.factory.CardFactory;
+import org.reflections.Reflections;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 public class Main {
 
-    static Random rand;
+    public static Random rand;
+
+    public static Integer getRandomInteger(Integer max) {
+        return rand.nextInt(max);
+    }
+
+    public static Integer getUniqueRandomInteger(Integer max, List<Integer> exclude) {
+        Integer random = rand.nextInt(max);
+        while(exclude.contains(random)) {
+            random = rand.nextInt(max);
+        }
+        return random;
+    }
 
     /**
      *
@@ -96,6 +108,9 @@ public class Main {
             }
             if (c.getTechLevel() != null) {
                 BGAll.add(c);
+                if (c.getId().contains("BaconUps")) {
+                    c.setGold(true);
+                }
             } else if (c.getType() == Type.HERO) {
                 Heroes.add(c);
             } else if (c.getType() == Type.ENCHANTMENT) {
@@ -103,12 +118,27 @@ public class Main {
             }
         }
 
+        Reflections reflections = new Reflections("com.alanbaumgartner.bgsim.deathrattles");
+        Set<Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle>> allClasses = reflections.getSubTypesOf(Deathrattle.class);
+        for (Card c : All) {
+            for (Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle> s : allClasses) {
+                if (c.getName().replace(" ", "").equalsIgnoreCase(s.getName())) {
+                    try {
+                        c.setDeathrattle(s.getDeclaredConstructor().newInstance());
+                    } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+
 //        System.out.println(BGAll.size());
+
 
         for (Card c : BGAll) {
             if (c.getTechLevel() != null && c.getType() == Type.MINION) {
                 Minions.add(c);
-                if (!c.getId().contains("BaconUps")) {
+                if (!c.isGold()) {
                     if (c.getCost() == 2 && !invalidTwoCost.contains(c.getName())) {
                         TwoCost.add(c);
                     } else if (c.getRarity() == Rarity.LEGENDARY && !invalidLegendaries.contains(c.getName())) {
@@ -143,9 +173,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
         Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(0).clone())));
-        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(70).clone(), BGAll.get(69).clone())));
+        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(228).clone(), BGAll.get(69).clone())));
         Simulation sim = new Simulation(one, two, 10000);
         sim.simulate();
 
