@@ -4,6 +4,8 @@ import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Board {
 
@@ -12,6 +14,8 @@ public class Board {
     private int step = 0;
     private int playerTurn;
     private int timeoutCounter = 0;
+
+    private Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
 
     private Player[] players = new Player[2];
 
@@ -96,7 +100,10 @@ public class Board {
             players[card.getPlayer()].removeCard(card);
             return;
         }
-        Deathrattle dr = Main.deathrattleMap.get(card.getName().replaceAll("[^a-zA-Z0-9]", ""));
+        String name = card.getName();
+        Matcher matcher = pattern.matcher(name);
+        String s = matcher.replaceAll("");
+        Deathrattle dr = Main.deathrattleMap.get(s);
         List<Card> killed = null;
         switch (dr.getType()) {
             case BUFF:
