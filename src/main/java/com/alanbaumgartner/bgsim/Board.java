@@ -103,8 +103,8 @@ public class Board {
             players[ownerIndex].removeCard(card);
             return;
         }
-        Main.deathrattleMap.get(card.getName().replace(" ", "").replace("'", "").replace("-", "")).Simulate(card, players[ownerIndex], players[ownerIndex].getMinions());
-//        Main.deathrattleMap.get(card.getName().replaceAll("(?i)\\\\s*(?: |'|-)s?", "")).Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
+//        System.out.println(card.getName());
+        Main.deathrattleMap.get(card.getName().replaceAll("[^a-zA-Z0-9]", "")).Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
 
 //        switch (card.getDeathrattle().getType()) {
 //            case BUFF:

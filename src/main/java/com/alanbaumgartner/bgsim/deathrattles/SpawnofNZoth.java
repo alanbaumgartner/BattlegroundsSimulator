@@ -13,9 +13,15 @@ public class SpawnofNZoth extends Deathrattle {
     public void Simulate(Card card, Player player, List<Card> cards) {
         player.removeCard(card);
         if (card.isGold()) {
-
+            for (Card c : player.getMinions()) {
+                c.setAttack(c.getAttack() + 2);
+                c.setHealth(c.getHealth() + 2);
+            }
         } else {
-
+            for (Card c : player.getMinions()) {
+                c.setAttack(c.getAttack() + 1);
+                c.setHealth(c.getHealth() + 1);
+            }
         }
     }
 

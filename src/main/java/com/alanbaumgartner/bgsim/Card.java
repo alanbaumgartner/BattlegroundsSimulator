@@ -5,9 +5,7 @@ import com.alanbaumgartner.bgsim.enums.Race;
 import com.alanbaumgartner.bgsim.enums.Rarity;
 import com.alanbaumgartner.bgsim.enums.Type;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 public class Card implements Cloneable {
 

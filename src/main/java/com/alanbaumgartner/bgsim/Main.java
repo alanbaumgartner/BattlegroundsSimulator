@@ -119,7 +119,8 @@ public class Main {
                     }
                 }
                 for (Token s : Token.values()) {
-                    if (s.toString().equalsIgnoreCase(c.getName().replace(" ", "").replace("-", ""))) {
+                    if (s.toString().equalsIgnoreCase(c.getName().replaceAll("[^a-zA-Z0-9]", ""))) {
+//                    if (s.toString().equalsIgnoreCase(c.getName().replace(" ", "").replace("-", ""))) {
                         Tokens.put(s, c);
                     }
                 }
