@@ -14,7 +14,9 @@ import java.util.*;
 
 public class Main {
 
-    public static Random rand;
+    private static Random rand = new Random();;
+    public static Map<String, Deathrattle> deathrattleMap = new HashMap<>();
+
     /**
      *
      */
@@ -42,22 +44,29 @@ public class Main {
     /**
      *
      */
-    static List<Card> Legendary;
+    static List<Card> LegendaryPool;
     /**
      *
      */
-    static List<Card> Deathrattle;
+    static List<Card> DeathrattlePool;
     /**
      *
      */
-    static List<Card> TwoCost;
+    static List<Card> TwoCostPool;
 
     /**
      *
      */
     static {
-        rand = new Random();
-
+        Reflections reflections = new Reflections("com.alanbaumgartner.bgsim.deathrattles");
+        Set<Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle>> allClasses = reflections.getSubTypesOf(Deathrattle.class);
+        for (Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle> s : allClasses) {
+            try {
+                deathrattleMap.put(s.getSimpleName(), s.getConstructor().newInstance());
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
+            }
+        }
 
         // Ghastcoiler cannot summon itself and the rest are no longer in the set.
         List<String> invalidDeathrattles = Arrays.asList("Ghastcoiler", "Piloted Sky Golem", "Mounted Raptor", "Sated Threshadon", "Tortollan Shellraiser");
@@ -67,13 +76,13 @@ public class Main {
         List<String> invalidTwoCost = Arrays.asList("Amalgam", "Big Bad Wolf", "Hyena", "Vault Safe", "Guard Bot", "Annoy-o-Tron");
 
         BGAll = new ArrayList<>();
-        TwoCost = new ArrayList<>();
-        Legendary = new ArrayList<>();
+        TwoCostPool = new ArrayList<>();
+        LegendaryPool = new ArrayList<>();
         Minions = new ArrayList<>();
         Enchantments = new ArrayList<>();
         Heroes = new ArrayList<>();
         Tokens = new ArrayList<>();
-        Deathrattle = new ArrayList<>();
+        DeathrattlePool = new ArrayList<>();
 
         try (FileReader fr = new FileReader("src/main/cards.json")) {
             All = Arrays.asList(CardFactory.CreateCards(fr));
@@ -97,37 +106,18 @@ public class Main {
             }
         }
 
-        Reflections reflections = new Reflections("com.alanbaumgartner.bgsim.deathrattles");
-        Set<Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle>> allClasses = reflections.getSubTypesOf(Deathrattle.class);
-        for (Card c : All) {
-            for (Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle> s : allClasses) {
-                if (c.getName().replace(" ", "").equalsIgnoreCase(s.getSimpleName())) {
-//                    try {
-//                        c.setDeathrattle(s.getConstructor().newInstance());
-//                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
-//                        e.printStackTrace();
-//                    }
-                }
-            }
-        }
-
-//        System.out.println(BGAll.size());
-
-
         for (Card c : BGAll) {
             if (c.getTechLevel() != null && c.getType() == Type.MINION) {
                 Minions.add(c);
                 if (!c.isGold()) {
                     if (c.getCost() == 2 && !invalidTwoCost.contains(c.getName())) {
-                        TwoCost.add(c);
+                        TwoCostPool.add(c);
                     } else if (c.getRarity() == Rarity.LEGENDARY && !invalidLegendaries.contains(c.getName())) {
-                        Legendary.add(c);
+                        LegendaryPool.add(c);
                     } else if (!invalidDeathrattles.contains(c.getName()) && c.getMechanics() != null && c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
-                        Deathrattle.add(c);
+                        DeathrattlePool.add(c);
                     }
                 }
-
-
             }
         }
 
@@ -164,15 +154,15 @@ public class Main {
     }
 
     public static Card getRandomDeathrattle() {
-        return Deathrattle.get(Main.getRandomInteger(Deathrattle.size()));
+        return DeathrattlePool.get(Main.getRandomInteger(DeathrattlePool.size()));
     }
 
     public static Card getRandomLegendary() {
-        return Legendary.get(Main.getRandomInteger(Legendary.size()));
+        return LegendaryPool.get(Main.getRandomInteger(LegendaryPool.size()));
     }
 
     public static Card getRandomTwoCost() {
-        return TwoCost.get(Main.getRandomInteger(TwoCost.size()));
+        return TwoCostPool.get(Main.getRandomInteger(TwoCostPool.size()));
     }
 
     public static void main(String[] args) {

@@ -17,7 +17,7 @@ public class FiendishServant extends Deathrattle {
         if (cards.size() <= 0) {
             return;
         }
-        Integer index = Main.rand.nextInt(cards.size());
+        Integer index = Main.getRandomInteger(cards.size());
         Card c = cards.get(index);
         c.setAttack(c.getAttack() + card.getAttack());
         if (card.isGold()) {

@@ -97,13 +97,8 @@ public class Board {
             players[ownerIndex].removeCard(card);
             return;
         }
-        try {
-            Class c = Class.forName("com.alanbaumgartner.bgsim.deathrattles." + card.getName().replace(" ", "").replace("'", "").replace("-", ""));
-            Deathrattle d = (Deathrattle) c.getConstructor().newInstance();
-            d.Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
-        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        Main.deathrattleMap.get(card.getName().replace(" ", "").replace("'", "").replace("-", "")).Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
+//        Main.deathrattleMap.get(card.getName().replaceAll("(?i)\\\\s*(?: |'|-)s?", "")).Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
 
 //        switch (card.getDeathrattle().getType()) {
 //            case BUFF:
