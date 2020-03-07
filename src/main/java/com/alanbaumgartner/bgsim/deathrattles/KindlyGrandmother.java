@@ -3,13 +3,19 @@ package com.alanbaumgartner.bgsim.deathrattles;
 import com.alanbaumgartner.bgsim.Card;
 import com.alanbaumgartner.bgsim.Main;
 import com.alanbaumgartner.bgsim.Player;
+import com.alanbaumgartner.bgsim.enums.DType;
 import com.alanbaumgartner.bgsim.enums.Token;
 
 import java.util.List;
 
 public class KindlyGrandmother extends Deathrattle {
+
+    static {
+        type = DType.SUMMON;
+    }
+
     @Override
-    public void Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         int index = getIndex(card, player);
         player.removeCard(card);
         if (card.isGold()) {
@@ -17,5 +23,6 @@ public class KindlyGrandmother extends Deathrattle {
         } else {
             player.addCard(index, (Card) Main.Tokens.get(Token.BIGBADWOLF).clone());
         }
+        return null;
     }
 }

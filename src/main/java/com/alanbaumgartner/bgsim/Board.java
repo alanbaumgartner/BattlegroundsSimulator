@@ -1,5 +1,6 @@
 package com.alanbaumgartner.bgsim;
 
+import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 
 import java.util.List;
@@ -77,44 +78,40 @@ public class Board {
 
     public void doStep() {
         Card attacker = players[playerTurn].getNextAttacker();
-//        System.out.println("Got attacket");
         Card defender = getDefendingMinion();
-//        System.out.println("Got defener");
-
-//        System.out.println("Step: " + step);
-//        System.out.println("Attack: " + attacker.getName());
-//        System.out.println("Defender: " + defender.getName() + "\n");
-
         attacker.attack(defender);
-
         if (attacker.isDead()) {
-            handleDeathrattle(playerTurn, attacker);
+            handleDeathrattle(attacker);
         }
         if (defender.isDead()) {
-            handleDeathrattle(1 - playerTurn, defender);
+            handleDeathrattle(defender);
         }
         step++;
         playerTurn = 1 - playerTurn;
     }
 
-    private void handleDeathrattle(int ownerIndex, Card card) {
+    private void handleDeathrattle(Card card) {
         timeoutCounter = 0;
         if (!card.getMechanics().contains(Mechanics.DEATHRATTLE)) {
-            players[ownerIndex].removeCard(card);
+            players[card.getPlayer()].removeCard(card);
             return;
         }
-//        System.out.println(card.getName());
-        Main.deathrattleMap.get(card.getName().replaceAll("[^a-zA-Z0-9]", "")).Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
-
-//        switch (card.getDeathrattle().getType()) {
-//            case BUFF:
-//            case SUMMON:
-//                card.getDeathrattle().Simulate(card, players[ownerIndex], players[ownerIndex].getMinions());
-//                break;
-//            case ATTACK:
-//                card.getDeathrattle().Simulate(card, players[ownerIndex], players[1 - ownerIndex].getMinions());
-//                break;
-//        }
+        Deathrattle dr = Main.deathrattleMap.get(card.getName().replaceAll("[^a-zA-Z0-9]", ""));
+        List<Card> killed = null;
+        switch (dr.getType()) {
+            case BUFF:
+            case SUMMON:
+                killed = dr.Simulate(card, players[card.getPlayer()], players[card.getPlayer()].getMinions());
+                break;
+            case ATTACK:
+                killed = dr.Simulate(card, players[card.getPlayer()], players[1 - card.getPlayer()].getMinions());
+                break;
+        }
+        if (killed != null &&!killed.isEmpty()) {
+            for (Card c : killed) {
+                handleDeathrattle(c);
+            }
+        }
     }
 
 }

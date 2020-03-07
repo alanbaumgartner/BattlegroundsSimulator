@@ -8,10 +8,13 @@ import com.alanbaumgartner.bgsim.enums.DType;
 import java.util.List;
 
 public class Ghastcoiler extends Deathrattle {
-    public DType type = DType.SUMMON;
+
+    static {
+        type = DType.SUMMON;
+    }
 
     @Override
-    public void Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         int index = getIndex(card, player);
         player.removeCard(card);
         player.addCard(index, (Card) Main.getRandomDeathrattle().clone());
@@ -20,6 +23,7 @@ public class Ghastcoiler extends Deathrattle {
             player.addCard(index, (Card) Main.getRandomDeathrattle().clone());
             player.addCard(index, (Card) Main.getRandomDeathrattle().clone());
         }
+        return null;
     }
 
 

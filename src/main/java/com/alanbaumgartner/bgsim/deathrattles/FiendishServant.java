@@ -9,13 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FiendishServant extends Deathrattle {
-    static DType type = DType.BUFF;
+
+    static {
+        type = DType.BUFF;
+    }
 
     @Override
-    public void Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         player.removeCard(card);
         if (cards.size() <= 0) {
-            return;
+            return null;
         }
         int index = Main.getRandomInteger(cards.size());
         Card c = cards.get(index);
@@ -25,5 +28,6 @@ public class FiendishServant extends Deathrattle {
             c = cards.get(index);
             c.setAttack(c.getAttack() + card.getAttack());
         }
+        return null;
     }
 }

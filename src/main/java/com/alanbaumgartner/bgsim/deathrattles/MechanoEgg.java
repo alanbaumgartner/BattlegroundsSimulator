@@ -9,10 +9,15 @@ import com.alanbaumgartner.bgsim.enums.Token;
 import java.util.List;
 
 public class MechanoEgg extends Deathrattle {
-    static DType type = DType.SUMMON;
+
+
+    static {
+        type = DType.SUMMON;
+    }
+
 
     @Override
-    public void Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         int index = getIndex(card, player);
         player.removeCard(card);
         if (card.isGold()) {
@@ -20,6 +25,7 @@ public class MechanoEgg extends Deathrattle {
         } else {
             player.addCard(index, (Card) Main.Tokens.get(Token.ROBOSAUR).clone());
         }
+        return null;
     }
 
 

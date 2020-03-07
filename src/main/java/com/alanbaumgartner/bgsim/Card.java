@@ -25,6 +25,15 @@ public class Card implements Cloneable {
     // Non JSON variables
     private Boolean dead = false;
     private Boolean gold = false;
+    private int player;
+
+    public int getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(int player) {
+        this.player = player;
+    }
 
     public Boolean isGold() {
         return gold;
@@ -50,17 +59,14 @@ public class Card implements Cloneable {
     }
 
     public void attack(Card c) {
-        int defenderAttack = c.getAttack();
-        int defenderHealth = c.getHealth();
-        HashSet<Mechanics> defenderMechanics = c.getMechanics();
-
         // Handle Attacker Damage
-        if (defenderMechanics.contains(Mechanics.DIVINE_SHIELD)) {
+        if (c.getMechanics().contains(Mechanics.DIVINE_SHIELD)) {
             c.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
-            c.setHealth(defenderHealth -= this.attack);
-            if (this.mechanics.contains(Mechanics.POISONOUS) || c.getHealth() <= 0) {
-                c.setDead(true);
+            if (this.getMechanics().contains(Mechanics.POISONOUS)) {
+                c.setHealth(0);
+            } else {
+                c.setHealth(c.getHealth() - this.attack);
             }
         }
 
@@ -68,9 +74,10 @@ public class Card implements Cloneable {
         if (this.getMechanics().contains(Mechanics.DIVINE_SHIELD)) {
             this.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
-            this.setHealth(this.health -= defenderAttack);
-            if (c.getMechanics().contains(Mechanics.POISONOUS) || this.health <= 0) {
-                this.setDead(true);
+            if (c.getMechanics().contains(Mechanics.POISONOUS)) {
+                this.setHealth(0);
+            } else {
+                this.setHealth(this.health - c.getAttack());
             }
         }
     }
@@ -127,6 +134,9 @@ public class Card implements Cloneable {
 
     public void setHealth(int health) {
         this.health = health;
+        if (this.health <= 0) {
+            setDead(true);
+        }
     }
 
     /**

@@ -19,6 +19,10 @@ public class Main {
     /**
      *
      */
+    public static Map<Token, Card> Tokens;
+    /**
+     *
+     */
     static List<Card> All;
     /**
      *
@@ -36,10 +40,6 @@ public class Main {
      *
      */
     static List<Card> Heroes;
-    /**
-     *
-     */
-    public static Map<Token, Card> Tokens;
     /**
      *
      */

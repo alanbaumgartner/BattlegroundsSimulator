@@ -7,10 +7,15 @@ import com.alanbaumgartner.bgsim.enums.DType;
 import java.util.List;
 
 public class SatedThreshadon extends Deathrattle {
-    static DType type = DType.SUMMON;
+
+
+    static {
+        type = DType.SUMMON;
+    }
+
 
     @Override
-    public void Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         int index = getIndex(card, player);
         player.removeCard(card);
         if (card.isGold()) {
@@ -18,6 +23,7 @@ public class SatedThreshadon extends Deathrattle {
         } else {
 
         }
+        return null;
     }
 
 

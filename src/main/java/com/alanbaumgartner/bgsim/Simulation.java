@@ -22,7 +22,7 @@ public class Simulation {
 
     public void simulate() {
         for (int i = 0; i < iterations; i++) {
-            Board b = new Board(new Player(one), new Player(two));
+            Board b = new Board(new Player(one, 0), new Player(two, 1));
             b.simulate();
 //            Thread object = new Thread(b);
 //            object.start();

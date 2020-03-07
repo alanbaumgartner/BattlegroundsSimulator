@@ -7,10 +7,14 @@ import com.alanbaumgartner.bgsim.enums.DType;
 import java.util.List;
 
 public class SpawnofNZoth extends Deathrattle {
-    static DType type = DType.BUFF;
+
+
+    static {
+        type = DType.BUFF;
+    }
 
     @Override
-    public void Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         player.removeCard(card);
         if (card.isGold()) {
             for (Card c : player.getMinions()) {
@@ -23,6 +27,7 @@ public class SpawnofNZoth extends Deathrattle {
                 c.setHealth(c.getHealth() + 1);
             }
         }
+        return null;
     }
 
 

@@ -7,9 +7,9 @@ import com.alanbaumgartner.bgsim.enums.DType;
 import java.util.List;
 
 public abstract class Deathrattle {
-    static DType type = null;
+    protected static DType type = null;
 
-    public abstract void Simulate(Card card, Player player, List<Card> cards);
+    public abstract List<Card> Simulate(Card card, Player player, List<Card> cards);
 
     public DType getType() {
         return type;
