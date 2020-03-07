@@ -2,6 +2,7 @@ package com.alanbaumgartner.bgsim.deathrattles;
 
 import com.alanbaumgartner.bgsim.Card;
 import com.alanbaumgartner.bgsim.Main;
+import com.alanbaumgartner.bgsim.Player;
 import com.alanbaumgartner.bgsim.enums.DType;
 
 import java.util.ArrayList;
@@ -11,7 +12,11 @@ public class FiendishServant extends Deathrattle {
     static DType type = DType.BUFF;
 
     @Override
-    public void Simulate(Card card, List<Card> cards) {
+    public void Simulate(Card card, Player player, List<Card> cards) {
+        player.removeCard(card);
+        if (cards.size() <= 0) {
+            return;
+        }
         Integer index = Main.rand.nextInt(cards.size());
         Card c = cards.get(index);
         c.setAttack(c.getAttack() + card.getAttack());

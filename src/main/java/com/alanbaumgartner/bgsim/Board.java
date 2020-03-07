@@ -1,6 +1,10 @@
 package com.alanbaumgartner.bgsim;
 
-import java.util.*;
+import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
+import com.alanbaumgartner.bgsim.enums.Mechanics;
+
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public class Board {
 
@@ -9,7 +13,6 @@ public class Board {
     private Integer step = 0;
     private Integer playerTurn;
 
-    private Deque<Card>[] attackQueues = new Deque[2];
     private Player[] players = new Player[2];
 
     public Board(Player one, Player two) {
@@ -23,8 +26,6 @@ public class Board {
         }
         players[0] = one;
         players[1] = two;
-        attackQueues[0] = new LinkedList<>(one.getMinions());
-        attackQueues[1] = new LinkedList<>(two.getMinions());
     }
 
     public void simulate() {
@@ -57,12 +58,6 @@ public class Board {
         }
     }
 
-    public Card getAttackingMinion() {
-        Card attacker = attackQueues[playerTurn].remove();
-        attackQueues[playerTurn].add(attacker);
-        return attacker;
-    }
-
     public Card getDefendingMinion() {
         Integer index;
         Card defender;
@@ -78,7 +73,7 @@ public class Board {
     }
 
     public void doStep() {
-        Card attacker = getAttackingMinion();
+        Card attacker = players[playerTurn].getNextAttacker();
         Card defender = getDefendingMinion();
 
 //        System.out.println("Step: " + step);
@@ -88,32 +83,37 @@ public class Board {
         attacker.attack(defender);
 
         if (attacker.isDead()) {
-            attackQueues[playerTurn].remove(attacker);
-            players[playerTurn].removeMinion(attacker);
-			handleDeathrattle(playerTurn, attacker);
+            handleDeathrattle(playerTurn, attacker);
         }
         if (defender.isDead()) {
-            attackQueues[1 - playerTurn].remove(defender);
-            players[1 - playerTurn].removeMinion(defender);
-			handleDeathrattle(1 - playerTurn, defender);
+            handleDeathrattle(1 - playerTurn, defender);
         }
         step++;
         playerTurn = 1 - playerTurn;
     }
 
     private void handleDeathrattle(Integer ownerIndex, Card card) {
-        if (card.getDeathrattle() == null) {
+        if (!card.getMechanics().contains(Mechanics.DEATHRATTLE)) {
+            players[ownerIndex].removeCard(card);
             return;
         }
-        switch (card.getDeathrattle().getType()) {
-            case BUFF:
-            case SUMMON:
-                card.getDeathrattle().Simulate(card, players[ownerIndex].getMinions());
-                break;
-            case ATTACK:
-                card.getDeathrattle().Simulate(card, players[1 - ownerIndex].getMinions());
-                break;
+        try {
+            Class c = Class.forName("com.alanbaumgartner.bgsim.deathrattles." + card.getName().replace(" ", "").replace("'", "").replace("-", ""));
+            Deathrattle d = (Deathrattle) c.getConstructor().newInstance();
+            d.Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e) {
+            e.printStackTrace();
         }
+
+//        switch (card.getDeathrattle().getType()) {
+//            case BUFF:
+//            case SUMMON:
+//                card.getDeathrattle().Simulate(card, players[ownerIndex], players[ownerIndex].getMinions());
+//                break;
+//            case ATTACK:
+//                card.getDeathrattle().Simulate(card, players[ownerIndex], players[1 - ownerIndex].getMinions());
+//                break;
+//        }
     }
 
 

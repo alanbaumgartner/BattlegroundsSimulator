@@ -15,59 +15,38 @@ import java.util.*;
 public class Main {
 
     public static Random rand;
-
-    public static Integer getRandomInteger(Integer max) {
-        return rand.nextInt(max);
-    }
-
-    public static Integer getUniqueRandomInteger(Integer max, List<Integer> exclude) {
-        Integer random = rand.nextInt(max);
-        while(exclude.contains(random)) {
-            random = rand.nextInt(max);
-        }
-        return random;
-    }
-
     /**
      *
      */
     static List<Card> All;
-
     /**
      *
      */
     static List<Card> BGAll;
-
     /**
      *
      */
     static List<Card> Minions;
-
     /**
      *
      */
     static List<Card> Enchantments;
-
     /**
      *
      */
     static List<Card> Heroes;
-
     /**
      *
      */
     static List<Card> Tokens;
-
     /**
      *
      */
     static List<Card> Legendary;
-
     /**
      *
      */
     static List<Card> Deathrattle;
-
     /**
      *
      */
@@ -122,12 +101,12 @@ public class Main {
         Set<Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle>> allClasses = reflections.getSubTypesOf(Deathrattle.class);
         for (Card c : All) {
             for (Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle> s : allClasses) {
-                if (c.getName().replace(" ", "").equalsIgnoreCase(s.getName())) {
-                    try {
-                        c.setDeathrattle(s.getDeclaredConstructor().newInstance());
-                    } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | IllegalAccessException e) {
-                        e.printStackTrace();
-                    }
+                if (c.getName().replace(" ", "").equalsIgnoreCase(s.getSimpleName())) {
+//                    try {
+//                        c.setDeathrattle(s.getConstructor().newInstance());
+//                    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+//                        e.printStackTrace();
+//                    }
                 }
             }
         }
@@ -172,9 +151,35 @@ public class Main {
 
     }
 
+    public static Integer getRandomInteger(Integer max) {
+        return rand.nextInt(max);
+    }
+
+    public static Integer getUniqueRandomInteger(Integer max, List<Integer> exclude) {
+        Integer random = rand.nextInt(max);
+        while (exclude.contains(random)) {
+            random = rand.nextInt(max);
+        }
+        return random;
+    }
+
+    public static Card getRandomDeathrattle() {
+        return Deathrattle.get(Main.getRandomInteger(Deathrattle.size()));
+    }
+
+    public static Card getRandomLegendary() {
+        return Legendary.get(Main.getRandomInteger(Legendary.size()));
+    }
+
+    public static Card getRandomTwoCost() {
+        return TwoCost.get(Main.getRandomInteger(TwoCost.size()));
+    }
+
     public static void main(String[] args) {
-        Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(0).clone())));
-        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(228).clone(), BGAll.get(69).clone())));
+        Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(5).clone())));
+        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(5).clone())));
+//        System.out.println(BGAll.get(5).getDeathrattle() != null);
+//        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(228).clone(), BGAll.get(69).clone())));
         Simulation sim = new Simulation(one, two, 10000);
         sim.simulate();
 

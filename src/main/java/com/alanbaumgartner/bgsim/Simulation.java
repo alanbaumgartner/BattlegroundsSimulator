@@ -47,8 +47,8 @@ public class Simulation {
         return stats.getPercentile(percentile);
     }
 
-    public Double getMeanScore() {
-        return stats.getMean();
+    public long getMeanScore() {
+        return Math.round(stats.getMean());
     }
 
     public Double getWinPercent() {

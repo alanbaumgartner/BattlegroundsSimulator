@@ -1,10 +1,7 @@
 package com.alanbaumgartner.bgsim;
 
 import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
-import com.alanbaumgartner.bgsim.enums.Mechanics;
-import com.alanbaumgartner.bgsim.enums.Race;
-import com.alanbaumgartner.bgsim.enums.Rarity;
-import com.alanbaumgartner.bgsim.enums.Type;
+import com.alanbaumgartner.bgsim.enums.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +21,8 @@ public class Card implements Cloneable {
     private Integer cost;
     private Type type;
 
-    //
-    private Deathrattle deathrattle;
-
-    public void setDeathrattle(Deathrattle deathrattle) {
-        this.deathrattle = deathrattle;
-    }
-
     // Non JSON variables
     private Boolean dead = false;
-
     private Boolean gold = false;
 
     public Boolean isGold() {
@@ -43,7 +32,6 @@ public class Card implements Cloneable {
     public void setGold(Boolean gold) {
         this.gold = gold;
     }
-
 
     public void init() {
         if (mechanics == null) {
@@ -84,13 +72,6 @@ public class Card implements Cloneable {
                 this.setDead(true);
             }
         }
-    }
-
-    /**
-     * @return Card's deathrattle or null if none.
-     */
-    public Deathrattle getDeathrattle() {
-        return deathrattle;
     }
 
     /**
