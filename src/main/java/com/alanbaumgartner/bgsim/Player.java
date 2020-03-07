@@ -11,8 +11,8 @@ import java.util.stream.Collectors;
 
 public class Player {
 
-    private Integer health;
-    private Integer tier;
+    private int health;
+    private int tier;
     private Hero hero;
     private List<Card> minions;
     private Deque<Card> attackers;
@@ -35,15 +35,22 @@ public class Player {
         this.hero = Hero.DEATHWING;
     }
 
-    public Integer getTier() {
+    public int getTier() {
         return tier;
     }
 
     public List<Card> getTauntMinions() {
-        return minions.stream().filter(c -> c.getMechanics().contains(Mechanics.TAUNT)).collect(Collectors.toList());
+        ArrayList<Card> list = new ArrayList<>();
+        for (Card c : minions) {
+            if (c.getMechanics().contains(Mechanics.TAUNT)) {
+                list.add(c);
+            }
+        }
+        return list;
+//        return minions.stream().filter(c -> c.getMechanics().contains(Mechanics.TAUNT)).collect(Collectors.toList());
     }
 
-    public Integer getNumMinions() {
+    public int getNumMinions() {
         return minions.size();
     }
 
@@ -66,14 +73,14 @@ public class Player {
         this.attackers.remove(c);
     }
 
-    public void addCard(Integer index, Card c) {
+    public void addCard(int index, Card c) {
         if (minions.size() < 7) {
             minions.add(index, c);
             reorderQueue(index, c);
         }
     }
 
-    private void reorderQueue(Integer index, Card c) {
+    private void reorderQueue(int index, Card c) {
         int size = attackers.size();
         for (int i = 0; i < size + 1; i++) {
             if (i == index) {

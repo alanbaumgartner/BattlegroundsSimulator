@@ -13,7 +13,7 @@ public class Simulation {
 
     private DescriptiveStatistics stats = new DescriptiveStatistics();
 
-    public Simulation(Player one, Player two, Integer iterations) {
+    public Simulation(Player one, Player two, int iterations) {
         this.one = one;
         this.two = two;
         this.iterations = iterations;
@@ -24,6 +24,8 @@ public class Simulation {
         for (int i = 0; i < iterations; i++) {
             Board b = new Board(new Player(one), new Player(two));
             b.simulate();
+//            Thread object = new Thread(b);
+//            object.start();
             switch (b.winner) {
                 case 1:
                     wins[0]++;

@@ -11,7 +11,9 @@ public class NadinatheRed extends Deathrattle {
 
     @Override
     public void Simulate(Card card, Player player, List<Card> cards) {
-player.removeCard(card);}
+
+        player.removeCard(card);
+    }
 
 
 }

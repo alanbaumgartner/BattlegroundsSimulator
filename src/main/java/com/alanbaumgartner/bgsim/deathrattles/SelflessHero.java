@@ -11,7 +11,8 @@ public class SelflessHero extends Deathrattle {
 
     @Override
     public void Simulate(Card card, Player player, List<Card> cards) {
-player.removeCard(card);if (card.isGold()) {
+        player.removeCard(card);
+        if (card.isGold()) {
 
         }
     }

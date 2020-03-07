@@ -3,6 +3,7 @@ package com.alanbaumgartner.bgsim;
 import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 import com.alanbaumgartner.bgsim.enums.Rarity;
+import com.alanbaumgartner.bgsim.enums.Token;
 import com.alanbaumgartner.bgsim.enums.Type;
 import com.alanbaumgartner.bgsim.factory.CardFactory;
 import org.reflections.Reflections;
@@ -14,9 +15,7 @@ import java.util.*;
 
 public class Main {
 
-    private static Random rand = new Random();;
     public static Map<String, Deathrattle> deathrattleMap = new HashMap<>();
-
     /**
      *
      */
@@ -40,7 +39,7 @@ public class Main {
     /**
      *
      */
-    static List<Card> Tokens;
+    public static Map<Token, Card> Tokens;
     /**
      *
      */
@@ -53,6 +52,7 @@ public class Main {
      *
      */
     static List<Card> TwoCostPool;
+    private static Random rand = new Random();
 
     /**
      *
@@ -81,7 +81,7 @@ public class Main {
         Minions = new ArrayList<>();
         Enchantments = new ArrayList<>();
         Heroes = new ArrayList<>();
-        Tokens = new ArrayList<>();
+        Tokens = new HashMap<>();
         DeathrattlePool = new ArrayList<>();
 
         try (FileReader fr = new FileReader("src/main/cards.json")) {
@@ -107,15 +107,20 @@ public class Main {
         }
 
         for (Card c : BGAll) {
-            if (c.getTechLevel() != null && c.getType() == Type.MINION) {
+            if (c.getType() == Type.MINION) {
                 Minions.add(c);
                 if (!c.isGold()) {
                     if (c.getCost() == 2 && !invalidTwoCost.contains(c.getName())) {
                         TwoCostPool.add(c);
                     } else if (c.getRarity() == Rarity.LEGENDARY && !invalidLegendaries.contains(c.getName())) {
                         LegendaryPool.add(c);
-                    } else if (!invalidDeathrattles.contains(c.getName()) && c.getMechanics() != null && c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
+                    } else if (!invalidDeathrattles.contains(c.getName()) && c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
                         DeathrattlePool.add(c);
+                    }
+                }
+                for (Token s : Token.values()) {
+                    if (s.toString().equalsIgnoreCase(c.getName().replace(" ", "").replace("-", ""))) {
+                        Tokens.put(s, c);
                     }
                 }
             }
@@ -141,12 +146,12 @@ public class Main {
 
     }
 
-    public static Integer getRandomInteger(Integer max) {
+    public static int getRandomInteger(int max) {
         return rand.nextInt(max);
     }
 
-    public static Integer getUniqueRandomInteger(Integer max, List<Integer> exclude) {
-        Integer random = rand.nextInt(max);
+    public static int getUniqueRandomInteger(int max, List<Integer> exclude) {
+        int random = rand.nextInt(max);
         while (exclude.contains(random)) {
             random = rand.nextInt(max);
         }
@@ -168,9 +173,7 @@ public class Main {
     public static void main(String[] args) {
         Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(5).clone())));
         Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(5).clone())));
-//        System.out.println(BGAll.get(5).getDeathrattle() != null);
-//        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(228).clone(), BGAll.get(69).clone())));
-        Simulation sim = new Simulation(one, two, 10000);
+        Simulation sim = new Simulation(one, two, 1000000);
         sim.simulate();
 
     }

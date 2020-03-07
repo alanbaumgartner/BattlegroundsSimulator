@@ -1,25 +1,24 @@
 package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 public class Board {
 
-    public Integer score = 0;
-    public Integer winner = 0;
-    private Integer step = 0;
-    private Integer playerTurn;
+    public int score = 0;
+    public int winner = 0;
+    private int step = 0;
+    private int playerTurn;
+    private int timeoutCounter = 0;
 
     private Player[] players = new Player[2];
 
     public Board(Player one, Player two) {
         // The player with the most minions is first, otherwise random.
-        Integer p1Minions = one.getNumMinions();
-        Integer p2Minions = two.getNumMinions();
-        if (p1Minions.equals(p2Minions)) {
+        int p1Minions = one.getNumMinions();
+        int p2Minions = two.getNumMinions();
+        if (p1Minions == p2Minions) {
             playerTurn = Main.getRandomInteger(1);
         } else {
             playerTurn = p1Minions > p2Minions ? 0 : 1;
@@ -30,6 +29,9 @@ public class Board {
 
     public void simulate() {
         while (true) {
+            if (timeoutCounter >= 10) {
+                winner += 3;
+            }
             if (players[0].getMinions().size() == 0) {
                 winner += 2;
             }
@@ -39,6 +41,7 @@ public class Board {
             if (winner != 0) {
                 break;
             } else {
+                timeoutCounter++;
                 doStep();
             }
         }
@@ -59,7 +62,7 @@ public class Board {
     }
 
     public Card getDefendingMinion() {
-        Integer index;
+        int index;
         Card defender;
         List<Card> tauntMinions = players[1 - playerTurn].getTauntMinions();
         if (tauntMinions.isEmpty()) {
@@ -74,7 +77,9 @@ public class Board {
 
     public void doStep() {
         Card attacker = players[playerTurn].getNextAttacker();
+//        System.out.println("Got attacket");
         Card defender = getDefendingMinion();
+//        System.out.println("Got defener");
 
 //        System.out.println("Step: " + step);
 //        System.out.println("Attack: " + attacker.getName());
@@ -92,12 +97,13 @@ public class Board {
         playerTurn = 1 - playerTurn;
     }
 
-    private void handleDeathrattle(Integer ownerIndex, Card card) {
+    private void handleDeathrattle(int ownerIndex, Card card) {
+        timeoutCounter = 0;
         if (!card.getMechanics().contains(Mechanics.DEATHRATTLE)) {
             players[ownerIndex].removeCard(card);
             return;
         }
-        Main.deathrattleMap.get(card.getName().replace(" ", "").replace("'", "").replace("-", "")).Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
+        Main.deathrattleMap.get(card.getName().replace(" ", "").replace("'", "").replace("-", "")).Simulate(card, players[ownerIndex], players[ownerIndex].getMinions());
 //        Main.deathrattleMap.get(card.getName().replaceAll("(?i)\\\\s*(?: |'|-)s?", "")).Simulate(card, players[ownerIndex],  players[ownerIndex].getMinions());
 
 //        switch (card.getDeathrattle().getType()) {
@@ -110,6 +116,5 @@ public class Board {
 //                break;
 //        }
     }
-
 
 }

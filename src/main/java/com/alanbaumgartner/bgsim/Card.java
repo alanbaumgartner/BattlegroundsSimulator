@@ -1,24 +1,27 @@
 package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
-import com.alanbaumgartner.bgsim.enums.*;
+import com.alanbaumgartner.bgsim.enums.Mechanics;
+import com.alanbaumgartner.bgsim.enums.Race;
+import com.alanbaumgartner.bgsim.enums.Rarity;
+import com.alanbaumgartner.bgsim.enums.Type;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Card implements Cloneable {
 
     // Json Variables
     private String name;
-    private Integer attack;
-    private Integer health;
+    private int attack;
+    private int health;
     private Rarity rarity;
     private Race race;
     private Integer techLevel;
-    private List<Mechanics> mechanics;
+    private HashSet<Mechanics> mechanics;
 
     private String id;
-    private Integer cost;
+    private int cost;
     private Type type;
 
     // Non JSON variables
@@ -35,12 +38,12 @@ public class Card implements Cloneable {
 
     public void init() {
         if (mechanics == null) {
-            mechanics = new ArrayList<>();
+            mechanics = new HashSet<>();
         }
     }
 
     @Override
-    protected Object clone() {
+    public Object clone() {
         try {
             return super.clone();
         } catch (CloneNotSupportedException ex) {
@@ -49,9 +52,9 @@ public class Card implements Cloneable {
     }
 
     public void attack(Card c) {
-        Integer defenderAttack = c.getAttack();
-        Integer defenderHealth = c.getHealth();
-        List<Mechanics> defenderMechanics = c.getMechanics();
+        int defenderAttack = c.getAttack();
+        int defenderHealth = c.getHealth();
+        HashSet<Mechanics> defenderMechanics = c.getMechanics();
 
         // Handle Attacker Damage
         if (defenderMechanics.contains(Mechanics.DIVINE_SHIELD)) {
@@ -102,36 +105,36 @@ public class Card implements Cloneable {
     /**
      * @return Card's attack value
      */
-    public Integer getAttack() {
+    public int getAttack() {
         return attack;
     }
 
-    public void setAttack(Integer attack) {
+    public void setAttack(int attack) {
         this.attack = attack;
     }
 
     /**
      * @return Mana cost to play the card.
      */
-    public Integer getCost() {
+    public int getCost() {
         return cost;
     }
 
     /**
      * @return Card's health value
      */
-    public Integer getHealth() {
+    public int getHealth() {
         return health;
     }
 
-    public void setHealth(Integer health) {
+    public void setHealth(int health) {
         this.health = health;
     }
 
     /**
      * @return Card's mechanics, full list can be found in Mechanics.
      */
-    public List<Mechanics> getMechanics() {
+    public HashSet<Mechanics> getMechanics() {
         return mechanics;
     }
 
