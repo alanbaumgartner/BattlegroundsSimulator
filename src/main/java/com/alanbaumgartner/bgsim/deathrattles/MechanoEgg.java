@@ -20,11 +20,8 @@ public class MechanoEgg extends Deathrattle {
     public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         int index = getIndex(card, player);
         player.removeCard(card);
-        if (card.isGold()) {
-
-        } else {
-            player.addCard(index, (Card) Main.Tokens.get(Token.ROBOSAUR).clone());
-        }
+        Card[] tokens = {(Card) Main.Tokens.get(Token.ROBOSAUR).clone()};
+        addTokens(card.isGold(), index, tokens, player);
         return null;
     }
 

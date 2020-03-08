@@ -20,13 +20,8 @@ public class Voidlord extends Deathrattle {
     public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         int index = getIndex(card, player);
         player.removeCard(card);
-        if (card.isGold()) {
-
-        } else {
-            player.addCard(index, (Card) Main.Tokens.get(Token.VOIDWALKER).clone());
-            player.addCard(index, (Card) Main.Tokens.get(Token.VOIDWALKER).clone());
-            player.addCard(index, (Card) Main.Tokens.get(Token.VOIDWALKER).clone());
-        }
+        Card[] tokens = {(Card) Main.Tokens.get(Token.VOIDWALKER).clone(), (Card) Main.Tokens.get(Token.VOIDWALKER).clone(), (Card) Main.Tokens.get(Token.VOIDWALKER).clone()};
+        addTokens(card.isGold(), index, tokens, player);
         return null;
     }
 

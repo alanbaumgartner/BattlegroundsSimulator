@@ -23,8 +23,18 @@ public class Card implements Cloneable {
     private Type type;
 
     // Non JSON variables
-    private Boolean dead = false;
-    private Boolean gold = false;
+    private boolean dead = false;
+    private boolean gold = false;
+    private boolean reborn = false;
+
+    public boolean hasReborn() {
+        return reborn;
+    }
+
+    public void setReborn(boolean reborn) {
+        this.reborn = reborn;
+    }
+
     private int player;
 
     public int getPlayer() {

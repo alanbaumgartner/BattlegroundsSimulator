@@ -114,7 +114,7 @@ public class Board {
                 killed = dr.Simulate(card, players[card.getPlayer()], players[1 - card.getPlayer()].getMinions());
                 break;
         }
-        if (killed != null &&!killed.isEmpty()) {
+        if (killed != null && !killed.isEmpty()) {
             for (Card c : killed) {
                 handleDeathrattle(c);
             }

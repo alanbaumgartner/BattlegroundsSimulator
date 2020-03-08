@@ -18,11 +18,8 @@ public class KindlyGrandmother extends Deathrattle {
     public List<Card> Simulate(Card card, Player player, List<Card> cards) {
         int index = getIndex(card, player);
         player.removeCard(card);
-        if (card.isGold()) {
-
-        } else {
-            player.addCard(index, (Card) Main.Tokens.get(Token.BIGBADWOLF).clone());
-        }
+        Card[] tokens = {(Card) Main.Tokens.get(Token.BIGBADWOLF).clone()};
+        addTokens(card.isGold(), index, tokens, player);
         return null;
     }
 }

@@ -15,6 +15,20 @@ public abstract class Deathrattle {
         return type;
     }
 
+    public void addTokens(boolean golden, int index, Card[] cards, Player player) {
+        if (golden) {
+            for (Card c : cards) {
+                c.setHealth(c.getHealth() * 2);
+                c.setAttack(c.getAttack() * 2);
+                player.addCard(index, c);
+            }
+        } else {
+            for (Card c : cards) {
+                player.addCard(index, c);
+            }
+        }
+    }
+
     protected int getIndex(Card card, Player player) {
         return Math.max(player.getMinions().indexOf(card), 0);
     }
