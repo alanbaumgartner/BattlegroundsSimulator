@@ -14,14 +14,13 @@ public class Ghastcoiler extends Deathrattle {
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        int index = getIndex(card, player);
-        player.removeCard(card);
-        player.addCard(index, (Card) Main.getRandomDeathrattle().clone());
-        player.addCard(index, (Card) Main.getRandomDeathrattle().clone());
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
+        owner.addCard(index, (Card) Main.getRandomDeathrattle().clone());
+        owner.addCard(index, (Card) Main.getRandomDeathrattle().clone());
         if (card.isGold()) {
-            player.addCard(index, (Card) Main.getRandomDeathrattle().clone());
-            player.addCard(index, (Card) Main.getRandomDeathrattle().clone());
+            owner.addCard(index, (Card) Main.getRandomDeathrattle().clone());
+            owner.addCard(index, (Card) Main.getRandomDeathrattle().clone());
         }
         return null;
     }

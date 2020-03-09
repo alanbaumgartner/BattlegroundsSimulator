@@ -14,9 +14,9 @@ public class BronzeWarden extends Deathrattle {
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
         if (card.hasReborn()) {
-            player.removeCard(card);
+            owner.removeCard(card);
         } else {
             if (card.isGold()) {
                 card.setAttack(4);

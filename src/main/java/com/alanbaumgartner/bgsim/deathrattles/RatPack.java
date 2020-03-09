@@ -16,14 +16,13 @@ public class RatPack extends Deathrattle {
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        int index = getIndex(card, player);
-        player.removeCard(card);
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
         Card[] tokens = new Card[Math.min(card.getAttack(), 7)];
         for (int i = 0; i < card.getAttack(); i++) {
             tokens[i] = (Card) Main.Tokens.get(Token.RAT).clone();
         }
-        addTokens(card.isGold(), index, tokens, player);
+        addTokens(card.isGold(), index, tokens, owner);
         return null;
     }
 

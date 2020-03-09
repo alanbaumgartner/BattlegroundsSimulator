@@ -14,12 +14,11 @@ public class SneedsOldShredder extends Deathrattle {
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        int index = getIndex(card, player);
-        player.removeCard(card);
-        player.addCard(index, (Card) Main.getRandomLegendary().clone());
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
+        owner.addCard(index, (Card) Main.getRandomLegendary().clone());
         if (card.isGold()) {
-            player.addCard(index, (Card) Main.getRandomLegendary().clone());
+            owner.addCard(index, (Card) Main.getRandomLegendary().clone());
         }
         return null;
     }

@@ -15,12 +15,11 @@ public class PilotedShredder extends Deathrattle {
 
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        int index = getIndex(card, player);
-        player.removeCard(card);
-        player.addCard(index, (Card) Main.getRandomTwoCost().clone());
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
+        owner.addCard(index, (Card) Main.getRandomTwoCost().clone());
         if (card.isGold()) {
-            player.addCard(index, (Card) Main.getRandomTwoCost().clone());
+            owner.addCard(index, (Card) Main.getRandomTwoCost().clone());
         }
         return null;
     }

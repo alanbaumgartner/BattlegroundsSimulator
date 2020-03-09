@@ -18,17 +18,17 @@ public class SelflessHero extends Deathrattle {
 
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        player.removeCard(card);
-        if (cards.size() <= 0) {
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
+        if (owner.getMinions().size() <= 0) {
             return null;
         }
-        int index = Main.getRandomInteger(cards.size());
-        Card c = cards.get(index);
+        int shieldIndex = Main.getRandomInteger(owner.getMinions().size());
+        Card c = owner.getMinions().get(shieldIndex);
         c.getMechanics().add(Mechanics.DIVINE_SHIELD);
         if (card.isGold()) {
-            index = Main.getUniqueRandomInteger(cards.size(), new ArrayList<>(index));
-            c = cards.get(index);
+            shieldIndex = Main.getUniqueRandomInteger(owner.getMinions().size(), new ArrayList<>(shieldIndex));
+            c = owner.getMinions().get(shieldIndex);
             c.getMechanics().add(Mechanics.DIVINE_SHIELD);
         }
         return null;

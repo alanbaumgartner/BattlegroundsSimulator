@@ -1,13 +1,9 @@
 package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
-import com.alanbaumgartner.bgsim.enums.Mechanics;
 import com.alanbaumgartner.bgsim.handlers.AbilityHandler;
 import com.alanbaumgartner.bgsim.handlers.DeathrattleHandler;
 
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Board {
 
@@ -16,8 +12,6 @@ public class Board {
     private int step = 0;
     private int playerTurn;
     private int timeoutCounter = 0;
-
-    private Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
 
     private Player[] players = new Player[2];
 
@@ -37,7 +31,15 @@ public class Board {
         players[1] = two;
 
         deathrattleHandler = new DeathrattleHandler(one, two);
+        for (Card c : one.getMinions()) {
+            c.subscribe(deathrattleHandler);
+            c.subscribe(abilityHandler);
+        }
         abilityHandler = new AbilityHandler(one, two);
+        for (Card c : two.getMinions()) {
+            c.subscribe(deathrattleHandler);
+            c.subscribe(abilityHandler);
+        }
     }
 
     public void simulate() {
@@ -68,6 +70,9 @@ public class Board {
                     score += c.getTechLevel();
                 }
                 break;
+            case 3:
+                winner = 0;
+                break;
         }
     }
 
@@ -89,11 +94,8 @@ public class Board {
         Card attacker = players[playerTurn].getNextAttacker();
         Card defender = getDefendingMinion();
         attacker.attack(defender);
-        if (attacker.isDead()) {
-            handleDeathrattle(attacker);
-        }
-        if (defender.isDead()) {
-            handleDeathrattle(defender);
+        if (deathPhase() > 0) {
+            timeoutCounter = 0;
         }
         step++;
         playerTurn = 1 - playerTurn;
@@ -108,48 +110,34 @@ public class Board {
     }
 
     private int deathPhase() {
-        int deaths = 0;
-        for (Card c : players[0].getMinions()) {
-            if (c.isDead()) {
-
-                deaths++;
-            }
-
-        }
-        for (Card c : players[1].getMinions()) {
-            if (c.isDead()) {
-
-                deaths++;
-            }
-        }
-        return deaths;
+        return deathrattleHandler.handleDeaths();
     }
 
     private void handleDeathrattle(Card card) {
-        timeoutCounter = 0;
-        if (!card.getMechanics().contains(Mechanics.DEATHRATTLE)) {
-            players[card.getPlayer()].removeCard(card);
-            return;
-        }
-        String name = card.getName();
-        Matcher matcher = pattern.matcher(name);
-        String s = matcher.replaceAll("");
-        Deathrattle dr = Main.deathrattleMap.get(s);
-        List<Card> killed = null;
-        switch (dr.getType()) {
-            case BUFF:
-            case SUMMON:
-                killed = dr.Simulate(card, players[card.getPlayer()], players[card.getPlayer()].getMinions());
-                break;
-            case ATTACK:
-                killed = dr.Simulate(card, players[card.getPlayer()], players[1 - card.getPlayer()].getMinions());
-                break;
-        }
-        if (killed != null && !killed.isEmpty()) {
-            for (Card c : killed) {
-                handleDeathrattle(c);
-            }
-        }
+//        timeoutCounter = 0;
+//        if (!card.getMechanics().contains(Mechanics.DEATHRATTLE)) {
+//            card.getPlayer().removeCard(card);
+//            return;
+//        }
+//        String name = card.getName();
+//        Matcher matcher = pattern.matcher(name);
+//        String s = matcher.replaceAll("");
+//        Deathrattle dr = Main.deathrattleMap.get(s);
+//        List<Card> killed = null;
+//        switch (dr.getType()) {
+//            case BUFF:
+//            case SUMMON:
+//                killed = dr.Simulate(card, players[card.getPlayer()], players[card.getPlayer()].getMinions());
+//                break;
+//            case ATTACK:
+//                killed = dr.Simulate(card, players[card.getPlayer()], players[1 - card.getPlayer()].getMinions());
+//                break;
+//        }
+//        if (killed != null && !killed.isEmpty()) {
+//            for (Card c : killed) {
+//                handleDeathrattle(c);
+//            }
+//        }
     }
 
 }

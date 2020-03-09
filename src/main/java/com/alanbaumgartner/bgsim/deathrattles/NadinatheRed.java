@@ -17,12 +17,12 @@ public class NadinatheRed extends Deathrattle {
 
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        player.removeCard(card);
-        if (cards.size() <= 0) {
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
+        if (owner.getMinions().size() <= 0) {
             return null;
         }
-        for (Card c : player.getMinions()) {
+        for (Card c : owner.getMinions()) {
             if (c.getRace() == Race.DRAGON) {
                 c.getMechanics().add(Mechanics.DIVINE_SHIELD);
             }

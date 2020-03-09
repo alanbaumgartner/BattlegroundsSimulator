@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class Deathrattle {
     protected static DType type = null;
 
-    public abstract List<Card> Simulate(Card card, Player player, List<Card> cards);
+    public abstract List<Card> Simulate(Card card, Player owner, Player opponent, int index);
 
     public DType getType() {
         return type;

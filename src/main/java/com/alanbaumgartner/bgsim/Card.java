@@ -1,11 +1,16 @@
 package com.alanbaumgartner.bgsim;
 
+import com.alanbaumgartner.bgsim.abilities.Ability;
+import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 import com.alanbaumgartner.bgsim.enums.Race;
 import com.alanbaumgartner.bgsim.enums.Rarity;
 import com.alanbaumgartner.bgsim.enums.Type;
+import com.alanbaumgartner.bgsim.handlers.Handler;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class Card implements Cloneable {
 
@@ -26,7 +31,16 @@ public class Card implements Cloneable {
     private boolean dead = false;
     private boolean gold = false;
     private boolean reborn = false;
-    private int player;
+
+    private Deathrattle deathrattle;
+    private Ability ability;
+
+    private List<Handler> listeners = new ArrayList<>();
+    private Player player;
+
+    public void subscribe(Handler handler) {
+        listeners.add(handler);
+    }
 
     public boolean hasReborn() {
         return reborn;
@@ -36,11 +50,11 @@ public class Card implements Cloneable {
         this.reborn = reborn;
     }
 
-    public int getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(int player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 
@@ -73,7 +87,7 @@ public class Card implements Cloneable {
             c.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
             if (this.getMechanics().contains(Mechanics.POISONOUS)) {
-                c.setHealth(0);
+                c.setHealth(Integer.MIN_VALUE);
             } else {
                 c.setHealth(c.getHealth() - this.attack);
             }
@@ -84,7 +98,7 @@ public class Card implements Cloneable {
             this.getMechanics().remove(Mechanics.DIVINE_SHIELD);
         } else {
             if (c.getMechanics().contains(Mechanics.POISONOUS)) {
-                this.setHealth(0);
+                this.setHealth(Integer.MIN_VALUE);
             } else {
                 this.setHealth(this.health - c.getAttack());
             }

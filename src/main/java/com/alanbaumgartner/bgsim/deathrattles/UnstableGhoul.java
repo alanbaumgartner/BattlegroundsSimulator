@@ -14,16 +14,16 @@ public class UnstableGhoul extends Deathrattle {
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
         List<Card> killed = new ArrayList<>();
-        player.removeCard(card);
-        for (Card c : player.getMinions()) {
+        owner.removeCard(card);
+        for (Card c : owner.getMinions()) {
             c.setHealth(c.getHealth() - 1);
             if (c.isDead()) {
                 killed.add(c);
             }
         }
-        for (Card c : cards) {
+        for (Card c : opponent.getMinions()) {
             c.setHealth(c.getHealth() - 1);
             if (c.isDead()) {
                 killed.add(c);

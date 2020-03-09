@@ -17,11 +17,10 @@ public class ReplicatingMenace extends Deathrattle {
 
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        int index = getIndex(card, player);
-        player.removeCard(card);
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
         Card[] tokens = {(Card) Main.Tokens.get(Token.MICROBOT).clone(), (Card) Main.Tokens.get(Token.MICROBOT).clone(), (Card) Main.Tokens.get(Token.MICROBOT).clone()};
-        addTokens(card.isGold(), index, tokens, player);
+        addTokens(card.isGold(), index, tokens, owner);
         return null;
     }
 

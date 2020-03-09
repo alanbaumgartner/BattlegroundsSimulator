@@ -12,10 +12,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
 
-    public static Map<String, Deathrattle> deathrattleMap = new HashMap<>();
+    public static Map<String, Deathrattle> deathrattleMap = new LinkedHashMap<>();
     /**
      *
      */
@@ -23,36 +25,49 @@ public class Main {
     /**
      *
      */
-    static List<Card> All;
+    static Map<String, Card> All;
     /**
      *
      */
-    static List<Card> BGAll;
+    static Map<String, Card> BGAll;
     /**
      *
      */
-    static List<Card> Minions;
+    static Map<String, Card> Minions;
     /**
      *
      */
-    static List<Card> Enchantments;
+    static Map<String, Card> Enchantments;
     /**
      *
      */
-    static List<Card> Heroes;
+    static Map<String, Card> Heroes;
     /**
      *
      */
-    static List<Card> LegendaryPool;
+    static Map<String, Card> LegendaryPool;
     /**
      *
      */
-    static List<Card> DeathrattlePool;
+    static Map<String, Card> DeathrattlePool;
     /**
      *
      */
-    static List<Card> TwoCostPool;
+    static Map<String, Card> TwoCostPool;
     private static Random rand = new Random();
+    private static Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
+
+    public static int getRandomInteger(int max) {
+        return rand.nextInt(max);
+    }
+
+    public static int getUniqueRandomInteger(int max, List<Integer> exclude) {
+        int random = rand.nextInt(max);
+        while (exclude.contains(random)) {
+            random = rand.nextInt(max);
+        }
+        return random;
+    }
 
     /**
      *
@@ -75,47 +90,52 @@ public class Main {
         // Tokens cannot be spawned from shredder and Annoy-o-Tron is no longer in the set.
         List<String> invalidTwoCost = Arrays.asList("Amalgam", "Big Bad Wolf", "Hyena", "Vault Safe", "Guard Bot", "Annoy-o-Tron");
 
-        BGAll = new ArrayList<>();
-        TwoCostPool = new ArrayList<>();
-        LegendaryPool = new ArrayList<>();
-        Minions = new ArrayList<>();
-        Enchantments = new ArrayList<>();
-        Heroes = new ArrayList<>();
-        Tokens = new HashMap<>();
-        DeathrattlePool = new ArrayList<>();
+        BGAll = new LinkedHashMap<>();
+        TwoCostPool = new LinkedHashMap<>();
+        LegendaryPool = new LinkedHashMap<>();
+        Minions = new LinkedHashMap<>();
+        Enchantments = new LinkedHashMap<>();
+        Heroes = new LinkedHashMap<>();
+        Tokens = new LinkedHashMap<>();
+        DeathrattlePool = new LinkedHashMap<>();
 
         try (FileReader fr = new FileReader("src/main/cards.json")) {
-            All = Arrays.asList(CardFactory.CreateCards(fr));
+            All = new LinkedHashMap<>();
+            for (Card c : CardFactory.CreateCards(fr)) {
+                All.put(c.getName(), c);
+            }
         } catch (IOException ex) {
             System.err.println("Error reading cards from JSON.");
         }
 
-        for (Card c : All) {
+        for (Map.Entry<String, Card> entry : All.entrySet()) {
+            Card c = entry.getValue();
             if (c.getMechanics() == null) {
                 c.init();
             }
             if (c.getTechLevel() != null) {
-                BGAll.add(c);
+                BGAll.put(c.getName(), c);
                 if (c.getId().contains("BaconUps")) {
                     c.setGold(true);
                 }
             } else if (c.getType() == Type.HERO) {
-                Heroes.add(c);
+                Heroes.put(c.getName(), c);
             } else if (c.getType() == Type.ENCHANTMENT) {
-                Enchantments.add(c);
+                Enchantments.put(c.getName(), c);
             }
         }
 
-        for (Card c : BGAll) {
+        for (Map.Entry<String, Card> entry : BGAll.entrySet()) {
+            Card c = entry.getValue();
             if (c.getType() == Type.MINION) {
-                Minions.add(c);
+                Minions.put(c.getName(), c);
                 if (!c.isGold()) {
                     if (c.getCost() == 2 && !invalidTwoCost.contains(c.getName())) {
-                        TwoCostPool.add(c);
+                        TwoCostPool.put(c.getName(), c);
                     } else if (c.getRarity() == Rarity.LEGENDARY && !invalidLegendaries.contains(c.getName())) {
-                        LegendaryPool.add(c);
+                        LegendaryPool.put(c.getName(), c);
                     } else if (!invalidDeathrattles.contains(c.getName()) && c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
-                        DeathrattlePool.add(c);
+                        DeathrattlePool.put(c.getName(), c);
                     }
                 }
                 for (Token s : Token.values()) {
@@ -147,33 +167,27 @@ public class Main {
 
     }
 
-    public static int getRandomInteger(int max) {
-        return rand.nextInt(max);
-    }
-
-    public static int getUniqueRandomInteger(int max, List<Integer> exclude) {
-        int random = rand.nextInt(max);
-        while (exclude.contains(random)) {
-            random = rand.nextInt(max);
-        }
-        return random;
-    }
-
     public static Card getRandomDeathrattle() {
-        return DeathrattlePool.get(Main.getRandomInteger(DeathrattlePool.size()));
+        return (Card) DeathrattlePool.values().toArray()[(Main.getRandomInteger(DeathrattlePool.size()))];
     }
 
     public static Card getRandomLegendary() {
-        return LegendaryPool.get(Main.getRandomInteger(LegendaryPool.size()));
+        return (Card) LegendaryPool.values().toArray()[(Main.getRandomInteger(DeathrattlePool.size()))];
     }
 
     public static Card getRandomTwoCost() {
-        return TwoCostPool.get(Main.getRandomInteger(TwoCostPool.size()));
+        return (Card) TwoCostPool.values().toArray()[(Main.getRandomInteger(DeathrattlePool.size()))];
+    }
+
+    public static Deathrattle getDeathrattle(Card card) {
+        Matcher matcher = pattern.matcher(card.getName());
+        String s = matcher.replaceAll("");
+        return Main.deathrattleMap.get(s);
     }
 
     public static void main(String[] args) {
-        Player one = new Player(new ArrayList(Arrays.asList(BGAll.get(5).clone())));
-        Player two = new Player(new ArrayList(Arrays.asList(BGAll.get(5).clone())));
+        Player one = new Player(new ArrayList(Arrays.asList(((Card) BGAll.values().toArray()[(5)]).clone())));
+        Player two = new Player(new ArrayList(Arrays.asList(((Card) BGAll.values().toArray()[(5)]).clone())));
         Simulation sim = new Simulation(one, two, 1000000);
         sim.simulate();
 

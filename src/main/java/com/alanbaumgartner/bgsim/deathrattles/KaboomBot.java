@@ -16,21 +16,21 @@ public class KaboomBot extends Deathrattle {
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
         List<Card> killed = new ArrayList<>();
-        player.removeCard(card);
-        if (cards.size() <= 0) {
+        owner.removeCard(card);
+        if (opponent.getMinions().size() <= 0) {
             return null;
         }
-        int index = Main.getRandomInteger(cards.size());
-        Card c = cards.get(index);
+        int attackIndex = Main.getRandomInteger(opponent.getMinions().size());
+        Card c = opponent.getMinions().get(attackIndex);
         c.setHealth(c.getHealth() - 4);
         if (c.isDead()) {
             killed.add(c);
         }
         if (card.isGold()) {
-            index = Main.getUniqueRandomInteger(cards.size(), new ArrayList<>(index));
-            c = cards.get(index);
+            index = Main.getUniqueRandomInteger(opponent.getMinions().size(), new ArrayList<>(index));
+            c = opponent.getMinions().get(index);
             c.setHealth(c.getHealth() - 4);
             if (c.isDead()) {
                 killed.add(c);

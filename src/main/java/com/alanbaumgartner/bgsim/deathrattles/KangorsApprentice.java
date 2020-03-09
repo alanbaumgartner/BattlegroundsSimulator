@@ -14,9 +14,8 @@ public class KangorsApprentice extends Deathrattle {
 
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        int index = getIndex(card, player);
-        player.removeCard(card);
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
         if (card.isGold()) {
 
         }

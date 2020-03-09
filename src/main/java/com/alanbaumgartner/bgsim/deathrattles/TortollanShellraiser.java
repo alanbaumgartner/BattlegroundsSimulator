@@ -16,13 +16,13 @@ public class TortollanShellraiser extends Deathrattle {
 
 
     @Override
-    public List<Card> Simulate(Card card, Player player, List<Card> cards) {
-        player.removeCard(card);
-        if (cards.size() <= 0) {
+    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
+        owner.removeCard(card);
+        if (owner.getMinions().size() <= 0) {
             return null;
         }
-        int index = Main.getRandomInteger(cards.size());
-        Card c = cards.get(index);
+        int buffIndex = Main.getRandomInteger(owner.getMinions().size());
+        Card c = owner.getMinions().get(buffIndex);
         if (card.isGold()) {
             c.setAttack(c.getAttack() + 1);
             c.setHealth(c.getHealth() + 1);

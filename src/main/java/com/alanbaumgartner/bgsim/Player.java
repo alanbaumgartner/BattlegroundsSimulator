@@ -3,10 +3,7 @@ package com.alanbaumgartner.bgsim;
 import com.alanbaumgartner.bgsim.enums.Hero;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Player {
 
@@ -15,17 +12,17 @@ public class Player {
     private Hero hero;
     private List<Card> minions;
     private Deque<Card> attackers;
-    private int pNumber;
 
-    public Player(Player copy, int pNumber) {
+    private Set<Card> deadMechs;
+
+    public Player(Player copy) {
         health = copy.health;
         tier = copy.tier;
         hero = copy.hero;
-        this.pNumber = pNumber;
         minions = new ArrayList<>();
         for (Card c : copy.getMinions()) {
             Card cloned = (Card) c.clone();
-            cloned.setPlayer(pNumber);
+            cloned.setPlayer(this);
             minions.add(cloned);
         }
         attackers = new LinkedList<>(minions);
@@ -36,6 +33,11 @@ public class Player {
         this.health = 40;
         this.tier = 1;
         this.hero = Hero.DEATHWING;
+    }
+
+    public int indexOfCard(Card c) {
+        return Math.max(minions.indexOf(c), 0);
+
     }
 
     public int getTier() {
@@ -77,7 +79,7 @@ public class Player {
     }
 
     public void addCard(int index, Card c) {
-        c.setPlayer(this.pNumber);
+        c.setPlayer(this);
         if (minions.size() < 7) {
             minions.add(index, c);
             reorderQueue(index, c);
