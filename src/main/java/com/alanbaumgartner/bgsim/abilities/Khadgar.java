@@ -1,4 +1,17 @@
 package com.alanbaumgartner.bgsim.abilities;
 
-public class Khadgar {
+import com.alanbaumgartner.bgsim.enums.AType;
+
+import java.beans.PropertyChangeEvent;
+
+public class Khadgar extends Ability {
+    static {
+        type = AType.PASSIVE;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
+
+    }
 }
+

@@ -1,4 +1,18 @@
 package com.alanbaumgartner.bgsim.abilities;
 
-public class MurlocWarleader {
+import com.alanbaumgartner.bgsim.enums.AType;
+
+import java.beans.PropertyChangeEvent;
+
+public class MurlocWarleader extends Ability {
+    static {
+        type = AType.PASSIVE;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
+
+    }
+
+
 }

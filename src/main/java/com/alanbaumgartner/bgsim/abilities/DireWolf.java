@@ -1,4 +1,17 @@
 package com.alanbaumgartner.bgsim.abilities;
 
-public class DireWolf {
+import com.alanbaumgartner.bgsim.enums.AType;
+
+import java.beans.PropertyChangeEvent;
+
+public class DireWolf extends Ability {
+    static {
+        type = AType.PASSIVE;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
+
+    }
 }
+

@@ -2,6 +2,8 @@ package com.alanbaumgartner.bgsim;
 
 import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
+import com.alanbaumgartner.bgsim.handlers.AbilityHandler;
+import com.alanbaumgartner.bgsim.handlers.DeathrattleHandler;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -19,6 +21,9 @@ public class Board {
 
     private Player[] players = new Player[2];
 
+    private DeathrattleHandler deathrattleHandler;
+    private AbilityHandler abilityHandler;
+
     public Board(Player one, Player two) {
         // The player with the most minions is first, otherwise random.
         int p1Minions = one.getNumMinions();
@@ -30,13 +35,13 @@ public class Board {
         }
         players[0] = one;
         players[1] = two;
+
+        deathrattleHandler = new DeathrattleHandler(one, two);
+        abilityHandler = new AbilityHandler(one, two);
     }
 
     public void simulate() {
-        while (true) {
-            if (timeoutCounter >= 10) {
-                winner += 3;
-            }
+        while (timeoutCounter <= 10) {
             if (players[0].getMinions().size() == 0) {
                 winner += 2;
             }
@@ -92,6 +97,32 @@ public class Board {
         }
         step++;
         playerTurn = 1 - playerTurn;
+    }
+
+    private void startPhase() {
+
+    }
+
+    private void attackPhase() {
+
+    }
+
+    private int deathPhase() {
+        int deaths = 0;
+        for (Card c : players[0].getMinions()) {
+            if (c.isDead()) {
+
+                deaths++;
+            }
+
+        }
+        for (Card c : players[1].getMinions()) {
+            if (c.isDead()) {
+
+                deaths++;
+            }
+        }
+        return deaths;
     }
 
     private void handleDeathrattle(Card card) {

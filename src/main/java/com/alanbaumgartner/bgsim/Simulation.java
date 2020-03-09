@@ -35,7 +35,7 @@ public class Simulation {
                     wins[1]++;
                     stats.addValue(-b.score);
                     break;
-                case 3:
+                case 0:
                     wins[2]++;
                     stats.addValue(0);
                     break;

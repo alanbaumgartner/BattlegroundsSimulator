@@ -26,6 +26,7 @@ public class Card implements Cloneable {
     private boolean dead = false;
     private boolean gold = false;
     private boolean reborn = false;
+    private int player;
 
     public boolean hasReborn() {
         return reborn;
@@ -34,8 +35,6 @@ public class Card implements Cloneable {
     public void setReborn(boolean reborn) {
         this.reborn = reborn;
     }
-
-    private int player;
 
     public int getPlayer() {
         return player;

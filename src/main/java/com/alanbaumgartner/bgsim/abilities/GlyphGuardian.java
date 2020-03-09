@@ -1,4 +1,16 @@
 package com.alanbaumgartner.bgsim.abilities;
 
-public class GlyphGuardian {
+import com.alanbaumgartner.bgsim.enums.AType;
+
+import java.beans.PropertyChangeEvent;
+
+public class GlyphGuardian extends Ability {
+    static {
+        type = AType.PASSIVE;
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent event) {
+
+    }
 }
