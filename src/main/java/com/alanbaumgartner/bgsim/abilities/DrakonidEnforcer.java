@@ -5,13 +5,13 @@ import com.alanbaumgartner.bgsim.enums.AType;
 import java.beans.PropertyChangeEvent;
 
 public class DrakonidEnforcer extends Ability {
-    static {
-        type = AType.DAMAGE;
-    }
+	static {
+		type = AType.DAMAGE;
+	}
 
-    @Override
-    public void propertyChange(PropertyChangeEvent event) {
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
 
-    }
+	}
 }
 

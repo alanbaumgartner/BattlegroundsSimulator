@@ -9,27 +9,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PilotedShredder extends Deathrattle {
-    @Override
-    public void init() {
+	@Override
+	public void init() {
 
-        type = DType.SUMMON;
-    }
-
-
-    @Override
-    public List<Card> Simulate(Card card) {
-        List<Card> summons = new ArrayList<>();
-        summons.add((Card) Main.getRandomTwoCost().clone());
-        if (card.isGold()) {
-            summons.add((Card) Main.getRandomTwoCost().clone());
-        }
-        return summons;
+		type = DType.SUMMON;
+	}
 
 
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		List<Card> summons = new ArrayList<>();
+		summons.add((Card) Main.getRandomTwoCost().clone());
+		if (card.isGold()) {
+			summons.add((Card) Main.getRandomTwoCost().clone());
+		}
+		return summons;
 
-    @Override
-    public void Simulate(Card card, Player player) {
 
-    }
+	}
+
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 }

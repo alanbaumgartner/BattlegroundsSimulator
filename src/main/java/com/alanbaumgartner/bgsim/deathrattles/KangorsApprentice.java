@@ -8,21 +8,21 @@ import java.util.List;
 
 public class KangorsApprentice extends Deathrattle {
 
-    @Override
-    public void init() {
-        type = DType.SUMMON;
-    }
+	@Override
+	public void init() {
+		type = DType.SUMMON;
+	}
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        if (card.isGold()) {
+	@Override
+	public List<Card> Simulate(Card card) {
+		if (card.isGold()) {
 
-        }
-        return null;
-    }
+		}
+		return null;
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
-
-    }
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 }

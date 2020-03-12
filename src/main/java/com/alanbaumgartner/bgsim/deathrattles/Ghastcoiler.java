@@ -10,25 +10,25 @@ import java.util.List;
 
 public class Ghastcoiler extends Deathrattle {
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        List<Card> summons = new ArrayList<>();
-        summons.add((Card) Main.getRandomDeathrattle().clone());
-        summons.add((Card) Main.getRandomDeathrattle().clone());
-        if (card.isGold()) {
-            summons.add((Card) Main.getRandomDeathrattle().clone());
-            summons.add((Card) Main.getRandomDeathrattle().clone());
-        }
-        return summons;
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		List<Card> summons = new ArrayList<>();
+		summons.add((Card) Main.getRandomDeathrattle().clone());
+		summons.add((Card) Main.getRandomDeathrattle().clone());
+		if (card.isGold()) {
+			summons.add((Card) Main.getRandomDeathrattle().clone());
+			summons.add((Card) Main.getRandomDeathrattle().clone());
+		}
+		return summons;
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 
-    }
-
-    @Override
-    public void init() {
-        type = DType.SUMMON;
-    }
+	@Override
+	public void init() {
+		type = DType.SUMMON;
+	}
 }

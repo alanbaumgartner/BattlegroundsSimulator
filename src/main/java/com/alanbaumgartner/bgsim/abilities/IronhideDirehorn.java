@@ -5,13 +5,13 @@ import com.alanbaumgartner.bgsim.enums.AType;
 import java.beans.PropertyChangeEvent;
 
 public class IronhideDirehorn extends Ability {
-    static {
-        type = AType.OVERKILL;
-    }
+	static {
+		type = AType.OVERKILL;
+	}
 
-    @Override
-    public void propertyChange(PropertyChangeEvent event) {
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
 
-    }
+	}
 }
 

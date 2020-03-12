@@ -8,25 +8,25 @@ import java.util.List;
 
 public class MountedRaptor extends Deathrattle {
 
-    @Override
-    public void init() {
+	@Override
+	public void init() {
 
-        type = DType.SUMMON;
-    }
+		type = DType.SUMMON;
+	}
 
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        if (card.isGold()) {
+	@Override
+	public List<Card> Simulate(Card card) {
+		if (card.isGold()) {
 
-        } else {
+		} else {
 
-        }
-        return null;
-    }
+		}
+		return null;
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
-
-    }
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 }

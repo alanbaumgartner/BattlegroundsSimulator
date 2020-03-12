@@ -11,20 +11,20 @@ import java.util.List;
 public class MechanoEgg extends Deathrattle {
 
 
-    public void init() {
-        token = (Card) Main.Tokens.get(Token.ROBOSAUR).clone();
-        type = DType.SUMMON;
-    }
+	public void init() {
+		token = (Card) Main.Tokens.get(Token.ROBOSAUR).clone();
+		type = DType.SUMMON;
+	}
 
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        Card[] tokens = {(Card) token.clone()};
-        return getTokens(card.isGold(), tokens);
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		Card[] tokens = {(Card) token.clone()};
+		return getTokens(card.isGold(), tokens);
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
-
-    }
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 }

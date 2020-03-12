@@ -7,94 +7,54 @@ import com.alanbaumgartner.bgsim.deathrattles.Deathrattle;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class DeathrattleHandler extends Handler {
 
-    public DeathrattleHandler(Player one, Player two) {
-        super(one, two);
-    }
+	private int deadThisTurn = 0;
+	private Queue<Card> drq = new ConcurrentLinkedQueue<>();
 
-    @Override
-    public void update(Card c) {
-        int index = getIndexAndRemove(c);
-        Player player = c.getPlayer();
-        Player opponent = player.equals(one) ? two : one;
+	public DeathrattleHandler(Player one, Player two) {
+		super(one, two);
+	}
 
-        if (!c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
-            return;
-        }
+	public int getDeadThisTurn() {
+		int ret = deadThisTurn;
+		deadThisTurn = 0;
+		return ret;
+	}
 
-        Deathrattle dr = Main.getDeathrattle(c);
-        List<Card> summons = null;
-        switch (dr.getType()) {
-            case BUFF:
-                dr.Simulate(c, player);
-                break;
-            case SUMMON:
-                summons = dr.Simulate(c);
-                break;
-            case ATTACK:
-                dr.Simulate(c, opponent);
-                break;
-        }
+	@Override
+	public void update(Card c) {
+		deadThisTurn++;
+		int index = c.getPlayer().indexOfCard(c);
+		Player player = c.getPlayer();
+		Player opponent = player.equals(one) ? two : one;
 
-        if (summons != null) {
-            for (Card card : summons) {
-                player.addCard(index, card);
-            }
-        }
+		if (!c.getMechanics().contains(Mechanics.DEATHRATTLE)) {
+			return;
+		}
 
-    }
+		Deathrattle dr = Main.getDeathrattle(c);
+		List<Card> summons = null;
+		switch (dr.getType()) {
+			case BUFF:
+				dr.Simulate(c, player);
+				break;
+			case SUMMON:
+				summons = dr.Simulate(c);
+				break;
+			case ATTACK:
+				dr.Simulate(c, opponent);
+				break;
+		}
 
-    //    public int handleDeaths() {
-//        int totalDeaths = 0;
-//        int deaths;
-//        do {
-//            deaths = 0;
-//            Iterator<Card> iter = one.getMinions().iterator();
-//            while (iter.hasNext()) {
-//                Card c = iter.next();
-//                if (c.getHealth() <= 0) {
-//                    c.setDead(true);
-//                    deaths++;
-//                    deaths += handleDeathrattle(c, getIndexAndRemove(c, iter));
-//                }
-//            }
-//            iter = two.getMinions().iterator();
-//            while (iter.hasNext()) {
-//                Card c = iter.next();
-//                if (c.getHealth() <= 0) {
-//                    c.setDead(true);
-//                    deaths++;
-//                    deaths += handleDeathrattle(c, getIndexAndRemove(c, iter));
-//                }
-//            }
-//            totalDeaths += deaths;
-//        } while (deaths != 0);
-//        return totalDeaths;
-//    }
-//
-    private int getIndexAndRemove(Card card) {
-        int index = card.getPlayer().indexOfCard(card);
-        card.getPlayer().removeCard(card);
-        return index;
-    }
-//
-//    private int handleDeathrattle(Card card, int index) {
-//        if (!card.getMechanics().contains(Mechanics.DEATHRATTLE)) {
-//            return 0;
-//        }
-//        Deathrattle dr = Main.getDeathrattle(card);
-//        List<Card> killed = null;
-//        switch (dr.getType()) {
-//            case BUFF:
-//            case SUMMON:
-//                killed = dr.Simulate(card, card.getPlayer(), card.getPlayer() == one ? one : two, index);
-//                break;
-//            case ATTACK:
-//                killed = dr.Simulate(card, card.getPlayer(), card.getPlayer() == one ? two : one, index);
-//                break;
-//        }
-//        return killed == null ? 0 : killed.size();
-//    }
+		if (summons != null) {
+			for (Card card : summons) {
+				card.setDeathrattleHandler(this);
+				player.addCard(index, card);
+			}
+		}
+	}
 }

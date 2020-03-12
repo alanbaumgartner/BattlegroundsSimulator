@@ -11,26 +11,27 @@ import java.util.List;
 public class NadinatheRed extends Deathrattle {
 
 
-    @Override
-    public void init() {
+	@Override
+	public void init() {
 
-        type = DType.BUFF;
-    }
+		type = DType.BUFF;
+	}
 
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        return null;
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		return null;
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
-        if (player.getMinions().size() > 0) {
-            for (Card c : player.getMinions()) {
-                if (c.getRace() == Race.DRAGON) {
-                    c.getMechanics().add(Mechanics.DIVINE_SHIELD);
-                }
-            }
-        }
-    }
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		if (player.getAliveMinions().size() > 0) {
+			for (Card c : player.getAliveMinions()) {
+				if (c.getRace() == Race.DRAGON) {
+					c.getMechanics().add(Mechanics.DIVINE_SHIELD);
+				}
+			}
+		}
+		return null;
+	}
 }

@@ -11,21 +11,21 @@ import java.util.List;
 
 public class HarvestGolem extends Deathrattle {
 
-    public void init() {
-        type = DType.SUMMON;
-        token = Main.Tokens.get(Token.DAMAGEDGOLEM);
-    }
+	public void init() {
+		type = DType.SUMMON;
+		token = Main.Tokens.get(Token.DAMAGEDGOLEM);
+	}
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        Card[] tokens = {(Card) token.clone()};
-        return getTokens(card.isGold(), tokens);
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		Card[] tokens = {(Card) token.clone()};
+		return getTokens(card.isGold(), tokens);
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
-
-    }
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 
 
 }

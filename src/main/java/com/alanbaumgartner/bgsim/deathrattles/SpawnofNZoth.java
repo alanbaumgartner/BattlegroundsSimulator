@@ -9,29 +9,30 @@ import java.util.List;
 public class SpawnofNZoth extends Deathrattle {
 
 
-    @Override
-    public void init() {
+	@Override
+	public void init() {
 
-        type = DType.BUFF;
-    }
+		type = DType.BUFF;
+	}
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        return null;
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		return null;
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
-        if (card.isGold()) {
-            for (Card c : player.getMinions()) {
-                c.setAttack(c.getAttack() + 2);
-                c.setHealth(c.getHealth() + 2);
-            }
-        } else {
-            for (Card c : player.getMinions()) {
-                c.setAttack(c.getAttack() + 1);
-                c.setHealth(c.getHealth() + 1);
-            }
-        }
-    }
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		if (card.isGold()) {
+			for (Card c : player.getAliveMinions()) {
+				c.setAttack(c.getAttack() + 2);
+				c.setHealth(c.getHealth() + 2);
+			}
+		} else {
+			for (Card c : player.getAliveMinions()) {
+				c.setAttack(c.getAttack() + 1);
+				c.setHealth(c.getHealth() + 1);
+			}
+		}
+		return null;
+	}
 }

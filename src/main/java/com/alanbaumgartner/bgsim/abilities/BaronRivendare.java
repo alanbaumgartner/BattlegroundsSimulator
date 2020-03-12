@@ -6,12 +6,12 @@ import java.beans.PropertyChangeEvent;
 
 public class BaronRivendare extends Ability {
 
-    static {
-        type = AType.PASSIVE;
-    }
+	static {
+		type = AType.PASSIVE;
+	}
 
-    @Override
-    public void propertyChange(PropertyChangeEvent event) {
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
 
-    }
+	}
 }

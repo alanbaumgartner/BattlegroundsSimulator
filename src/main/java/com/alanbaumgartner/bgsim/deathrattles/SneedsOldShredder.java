@@ -10,24 +10,24 @@ import java.util.List;
 
 public class SneedsOldShredder extends Deathrattle {
 
-    @Override
-    public void init() {
+	@Override
+	public void init() {
 
-        type = DType.SUMMON;
-    }
+		type = DType.SUMMON;
+	}
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        List<Card> summons = new ArrayList<>();
-        summons.add((Card) Main.getRandomLegendary().clone());
-        if (card.isGold()) {
-            summons.add((Card) Main.getRandomLegendary().clone());
-        }
-        return summons;
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		List<Card> summons = new ArrayList<>();
+		summons.add((Card) Main.getRandomLegendary().clone());
+		if (card.isGold()) {
+			summons.add((Card) Main.getRandomLegendary().clone());
+		}
+		return summons;
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
-
-    }
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 }

@@ -11,30 +11,30 @@ import java.util.List;
 
 public class BronzeWarden extends Deathrattle {
 
-    @Override
-    public List<Card> Simulate(Card card) {
-        List<Card> summons = new ArrayList<>();
-        Card c = (Card) token.clone();
-        if (!card.hasReborn()) {
-            if (card.isGold()) {
-                c.setAttack(4);
-            } else {
-                c.setAttack(2);
-            }
-            c.setHealth(1);
-            c.setReborn(true);
-        }
-        return summons;
-    }
+	@Override
+	public List<Card> Simulate(Card card) {
+		List<Card> summons = new ArrayList<>();
+		Card c = (Card) token.clone();
+		if (!card.hasReborn()) {
+			if (card.isGold()) {
+				c.setAttack(4);
+			} else {
+				c.setAttack(2);
+			}
+			c.setHealth(1);
+			c.setReborn(true);
+		}
+		return summons;
+	}
 
-    @Override
-    public void Simulate(Card card, Player player) {
+	@Override
+	public List<Card> Simulate(Card card, Player player) {
+		return null;
+	}
 
-    }
-
-    @Override
-    public void init() {
-        token = (Card) Main.Tokens.get(Token.BRONZEWARDEN).clone();
-        type = DType.SUMMON;
-    }
+	@Override
+	public void init() {
+		token = (Card) Main.Tokens.get(Token.BRONZEWARDEN).clone();
+		type = DType.SUMMON;
+	}
 }

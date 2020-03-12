@@ -5,13 +5,13 @@ import com.alanbaumgartner.bgsim.Player;
 
 public abstract class Handler {
 
-    Player one;
-    Player two;
+	Player one;
+	Player two;
 
-    public Handler(Player one, Player two) {
-        this.one = one;
-        this.two = two;
-    }
+	public Handler(Player one, Player two) {
+		this.one = one;
+		this.two = two;
+	}
 
-    public abstract void update(Card c);
+	public abstract void update(Card c);
 }

@@ -6,11 +6,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public abstract class Ability implements PropertyChangeListener {
-    protected static AType type = null;
+	protected static AType type = null;
 
-    public AType getType() {
-        return type;
-    }
+	public AType getType() {
+		return type;
+	}
 
-    public abstract void propertyChange(PropertyChangeEvent event);
+	public abstract void propertyChange(PropertyChangeEvent event);
 }
