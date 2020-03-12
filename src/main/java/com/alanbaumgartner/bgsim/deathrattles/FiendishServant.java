@@ -10,23 +10,28 @@ import java.util.List;
 
 public class FiendishServant extends Deathrattle {
 
-    static {
-        type = DType.BUFF;
+    @Override
+    public List<Card> Simulate(Card card) {
+        return null;
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
-        owner.removeCard(card);
-        if (owner.getMinions().size() <= 0) {
-            return null;
+    public void Simulate(Card card, Player player) {
+        if (player.getMinions().size() <= 0) {
+            return;
         }
-        Card c = owner.getMinions().get(index);
+        int index = Main.getRandomInteger(player.getNumMinions());
+        Card c = player.getMinions().get(index);
         c.setAttack(c.getAttack() + card.getAttack());
         if (card.isGold()) {
-            index = Main.getUniqueRandomInteger(owner.getMinions().size(), new ArrayList<>(index));
-            c = owner.getMinions().get(index);
+            index = Main.getUniqueRandomInteger(player.getMinions().size(), new ArrayList<>(index));
+            c = player.getMinions().get(index);
             c.setAttack(c.getAttack() + card.getAttack());
         }
-        return null;
+    }
+
+    @Override
+    public void init() {
+        type = DType.BUFF;
     }
 }

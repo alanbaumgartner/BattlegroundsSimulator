@@ -8,14 +8,15 @@ import java.util.List;
 
 public class MountedRaptor extends Deathrattle {
 
-    static {
+    @Override
+    public void init() {
+
         type = DType.SUMMON;
     }
 
 
     @Override
-    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
-        owner.removeCard(card);
+    public List<Card> Simulate(Card card) {
         if (card.isGold()) {
 
         } else {
@@ -24,5 +25,8 @@ public class MountedRaptor extends Deathrattle {
         return null;
     }
 
+    @Override
+    public void Simulate(Card card, Player player) {
 
+    }
 }

@@ -1,11 +1,8 @@
 package com.alanbaumgartner.bgsim;
 
-import com.alanbaumgartner.bgsim.handlers.AbilityHandler;
-import com.alanbaumgartner.bgsim.handlers.DeathrattleHandler;
-
 import java.util.List;
 
-public class Board {
+public class Board implements Runnable {
 
     public int score = 0;
     public int winner = 0;
@@ -15,8 +12,8 @@ public class Board {
 
     private Player[] players = new Player[2];
 
-    private DeathrattleHandler deathrattleHandler;
-    private AbilityHandler abilityHandler;
+//    private DeathrattleHandler deathrattleHandler;
+//    private AbilityHandler abilityHandler;
 
     public Board(Player one, Player two) {
         // The player with the most minions is first, otherwise random.
@@ -29,20 +26,10 @@ public class Board {
         }
         players[0] = one;
         players[1] = two;
-
-        deathrattleHandler = new DeathrattleHandler(one, two);
-        for (Card c : one.getMinions()) {
-            c.subscribe(deathrattleHandler);
-            c.subscribe(abilityHandler);
-        }
-        abilityHandler = new AbilityHandler(one, two);
-        for (Card c : two.getMinions()) {
-            c.subscribe(deathrattleHandler);
-            c.subscribe(abilityHandler);
-        }
     }
 
     public void simulate() {
+        startPhase();
         while (timeoutCounter <= 10) {
             if (players[0].getMinions().size() == 0) {
                 winner += 2;
@@ -91,9 +78,7 @@ public class Board {
     }
 
     public void doStep() {
-        Card attacker = players[playerTurn].getNextAttacker();
-        Card defender = getDefendingMinion();
-        attacker.attack(defender);
+        attackPhase();
         if (deathPhase() > 0) {
             timeoutCounter = 0;
         }
@@ -106,11 +91,14 @@ public class Board {
     }
 
     private void attackPhase() {
-
+        Card attacker = players[playerTurn].getNextAttacker();
+        Card defender = getDefendingMinion();
+        attacker.attack(defender);
     }
 
     private int deathPhase() {
-        return deathrattleHandler.handleDeaths();
+//        return deathrattleHandler.handleDeaths();
+        return 0;
     }
 
     private void handleDeathrattle(Card card) {
@@ -140,4 +128,8 @@ public class Board {
 //        }
     }
 
+    @Override
+    public void run() {
+        simulate();
+    }
 }

@@ -4,31 +4,28 @@ import com.alanbaumgartner.bgsim.Card;
 import com.alanbaumgartner.bgsim.Player;
 import com.alanbaumgartner.bgsim.enums.DType;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UnstableGhoul extends Deathrattle {
 
-    static {
+    @Override
+    public void init() {
+
         type = DType.ATTACK;
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
-        List<Card> killed = new ArrayList<>();
-        owner.removeCard(card);
-        for (Card c : owner.getMinions()) {
+    public List<Card> Simulate(Card card) {
+        return null;
+    }
+
+    @Override
+    public void Simulate(Card card, Player player) {
+        for (Card c : card.getPlayer().getMinions()) {
             c.setHealth(c.getHealth() - 1);
-            if (c.isDead()) {
-                killed.add(c);
-            }
         }
-        for (Card c : opponent.getMinions()) {
+        for (Card c : player.getMinions()) {
             c.setHealth(c.getHealth() - 1);
-            if (c.isDead()) {
-                killed.add(c);
-            }
         }
-        return killed;
     }
 }

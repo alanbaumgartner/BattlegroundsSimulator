@@ -1,5 +1,6 @@
 package com.alanbaumgartner.bgsim.handlers;
 
+import com.alanbaumgartner.bgsim.Card;
 import com.alanbaumgartner.bgsim.Player;
 
 public abstract class Handler {
@@ -11,4 +12,6 @@ public abstract class Handler {
         this.one = one;
         this.two = two;
     }
+
+    public abstract void update(Card c);
 }

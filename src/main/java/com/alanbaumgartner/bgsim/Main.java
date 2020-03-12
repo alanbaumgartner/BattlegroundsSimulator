@@ -57,32 +57,10 @@ public class Main {
     private static Random rand = new Random();
     private static Pattern pattern = Pattern.compile("[^a-zA-Z0-9]");
 
-    public static int getRandomInteger(int max) {
-        return rand.nextInt(max);
-    }
-
-    public static int getUniqueRandomInteger(int max, List<Integer> exclude) {
-        int random = rand.nextInt(max);
-        while (exclude.contains(random)) {
-            random = rand.nextInt(max);
-        }
-        return random;
-    }
-
     /**
      *
      */
     static {
-        Reflections reflections = new Reflections("com.alanbaumgartner.bgsim.deathrattles");
-        Set<Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle>> allClasses = reflections.getSubTypesOf(Deathrattle.class);
-        for (Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle> s : allClasses) {
-            try {
-                deathrattleMap.put(s.getSimpleName(), s.getConstructor().newInstance());
-            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-                e.printStackTrace();
-            }
-        }
-
         // Ghastcoiler cannot summon itself and the rest are no longer in the set.
         List<String> invalidDeathrattles = Arrays.asList("Ghastcoiler", "Piloted Sky Golem", "Mounted Raptor", "Sated Threshadon", "Tortollan Shellraiser");
         // Boogeymonster is no longer in the set.
@@ -123,6 +101,12 @@ public class Main {
             } else if (c.getType() == Type.ENCHANTMENT) {
                 Enchantments.put(c.getName(), c);
             }
+            for (Token s : Token.values()) {
+                if (s.toString().equalsIgnoreCase(c.getName().replaceAll("[^a-zA-Z0-9]", ""))) {
+//                    if (s.toString().equalsIgnoreCase(c.getName().replace(" ", "").replace("-", ""))) {
+                    Tokens.put(s, c);
+                }
+            }
         }
 
         for (Map.Entry<String, Card> entry : BGAll.entrySet()) {
@@ -138,18 +122,24 @@ public class Main {
                         DeathrattlePool.put(c.getName(), c);
                     }
                 }
-                for (Token s : Token.values()) {
-                    if (s.toString().equalsIgnoreCase(c.getName().replaceAll("[^a-zA-Z0-9]", ""))) {
-//                    if (s.toString().equalsIgnoreCase(c.getName().replace(" ", "").replace("-", ""))) {
-                        Tokens.put(s, c);
-                    }
-                }
+            }
+        }
+
+        Reflections reflections = new Reflections("com.alanbaumgartner.bgsim.deathrattles");
+        Set<Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle>> allClasses = reflections.getSubTypesOf(Deathrattle.class);
+        for (Class<? extends com.alanbaumgartner.bgsim.deathrattles.Deathrattle> s : allClasses) {
+            try {
+                Deathrattle dr = s.getConstructor().newInstance();
+                dr.init();
+                deathrattleMap.put(s.getSimpleName(), dr);
+            } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+                e.printStackTrace();
             }
         }
 
 //        int i = 0;
-//        for (Card c : BGAll) {
-//            System.out.println(c.getName() + i);
+//        for (Map.Entry<String, Card> entry : BGAll.entrySet()) {
+//            System.out.println(entry.getValue().getName() + i);
 //            i++;
 //        }
 
@@ -165,6 +155,18 @@ public class Main {
 //            System.out.println("deathrattles:" + c.getName());
 //        }
 
+    }
+
+    public static int getRandomInteger(int max) {
+        return rand.nextInt(max);
+    }
+
+    public static int getUniqueRandomInteger(int max, List<Integer> exclude) {
+        int random = rand.nextInt(max);
+        while (exclude.contains(random)) {
+            random = rand.nextInt(max);
+        }
+        return random;
     }
 
     public static Card getRandomDeathrattle() {
@@ -186,8 +188,8 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Player one = new Player(new ArrayList(Arrays.asList(((Card) BGAll.values().toArray()[(5)]).clone())));
-        Player two = new Player(new ArrayList(Arrays.asList(((Card) BGAll.values().toArray()[(5)]).clone())));
+        Player two = new Player(new ArrayList(Arrays.asList(((Card) BGAll.values().toArray()[(6)]).clone(), ((Card) BGAll.values().toArray()[(64)]).clone())));
+        Player one = new Player(new ArrayList(Arrays.asList(((Card) BGAll.values().toArray()[(63)]).clone(), ((Card) BGAll.values().toArray()[(64)]).clone(), ((Card) BGAll.values().toArray()[(64)]).clone())));
         Simulation sim = new Simulation(one, two, 1000000);
         sim.simulate();
 

@@ -2,7 +2,14 @@ package com.alanbaumgartner.bgsim;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class Simulation {
+
+    private final int MAX_THREADS = 8;
+    private ExecutorService threadPool = Executors.newFixedThreadPool(MAX_THREADS);
+    private Board[] simulations;
 
     private Player one;
     private Player two;
@@ -17,15 +24,19 @@ public class Simulation {
         this.one = one;
         this.two = two;
         this.iterations = iterations;
+        this.simulations = new Board[iterations];
+        for (int i = 0; i < iterations; i++) {
+            this.simulations[i] = new Board(new Player(one), new Player(two));
+        }
         wins = new Integer[]{0, 0, 0};
     }
 
     public void simulate() {
-        for (int i = 0; i < iterations; i++) {
-            Board b = new Board(new Player(one), new Player(two));
-            b.simulate();
-//            Thread object = new Thread(b);
-//            object.start();
+        for (Board b : simulations) {
+            threadPool.execute(b);
+        }
+        threadPool.shutdown();
+        for (Board b : simulations) {
             switch (b.winner) {
                 case 1:
                     wins[0]++;

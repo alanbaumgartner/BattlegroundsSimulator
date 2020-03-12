@@ -15,4 +15,5 @@ public enum Token {
     IRONHIDERUNT,
     FINKLEEINHORN,
     IMP,
+    BRONZEWARDEN,
 }

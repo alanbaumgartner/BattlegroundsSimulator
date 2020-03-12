@@ -11,17 +11,19 @@ import java.util.List;
 public class SavannahHighmane extends Deathrattle {
 
 
-    static {
+    public void init() {
+        token = (Card) Main.Tokens.get(Token.HYENA).clone();
         type = DType.SUMMON;
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
-        owner.removeCard(card);
-        Card[] tokens = {(Card) Main.Tokens.get(Token.HYENA).clone(), (Card) Main.Tokens.get(Token.HYENA).clone()};
-        addTokens(card.isGold(), index, tokens, owner);
-        return null;
+    public List<Card> Simulate(Card card) {
+        Card[] tokens = {(Card) token.clone(), (Card) token.clone()};
+        return getTokens(card.isGold(), tokens);
     }
 
+    @Override
+    public void Simulate(Card card, Player player) {
 
+    }
 }

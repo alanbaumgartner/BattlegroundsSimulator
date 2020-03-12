@@ -11,28 +11,28 @@ import java.util.List;
 
 public class SelflessHero extends Deathrattle {
 
+    @Override
+    public void init() {
 
-    static {
         type = DType.BUFF;
     }
 
-
     @Override
-    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
-        owner.removeCard(card);
-        if (owner.getMinions().size() <= 0) {
-            return null;
-        }
-        int shieldIndex = Main.getRandomInteger(owner.getMinions().size());
-        Card c = owner.getMinions().get(shieldIndex);
-        c.getMechanics().add(Mechanics.DIVINE_SHIELD);
-        if (card.isGold()) {
-            shieldIndex = Main.getUniqueRandomInteger(owner.getMinions().size(), new ArrayList<>(shieldIndex));
-            c = owner.getMinions().get(shieldIndex);
-            c.getMechanics().add(Mechanics.DIVINE_SHIELD);
-        }
+    public List<Card> Simulate(Card card) {
         return null;
     }
 
-
+    @Override
+    public void Simulate(Card card, Player player) {
+        if (player.getMinions().size() > 0) {
+            int shieldIndex = Main.getRandomInteger(player.getMinions().size());
+            Card c = player.getMinions().get(shieldIndex);
+            c.getMechanics().add(Mechanics.DIVINE_SHIELD);
+            if (card.isGold()) {
+                shieldIndex = Main.getUniqueRandomInteger(player.getMinions().size(), new ArrayList<>(shieldIndex));
+                c = player.getMinions().get(shieldIndex);
+                c.getMechanics().add(Mechanics.DIVINE_SHIELD);
+            }
+        }
+    }
 }

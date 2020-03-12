@@ -6,11 +6,8 @@ import com.alanbaumgartner.bgsim.enums.Mechanics;
 import com.alanbaumgartner.bgsim.enums.Race;
 import com.alanbaumgartner.bgsim.enums.Rarity;
 import com.alanbaumgartner.bgsim.enums.Type;
-import com.alanbaumgartner.bgsim.handlers.Handler;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 
 public class Card implements Cloneable {
 
@@ -35,12 +32,7 @@ public class Card implements Cloneable {
     private Deathrattle deathrattle;
     private Ability ability;
 
-    private List<Handler> listeners = new ArrayList<>();
     private Player player;
-
-    public void subscribe(Handler handler) {
-        listeners.add(handler);
-    }
 
     public boolean hasReborn() {
         return reborn;

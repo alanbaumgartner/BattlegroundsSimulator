@@ -11,20 +11,22 @@ import java.util.List;
 public class RatPack extends Deathrattle {
 
 
-    static {
+    public void init() {
+        token = (Card) Main.Tokens.get(Token.RAT).clone();
         type = DType.SUMMON;
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
-        owner.removeCard(card);
+    public List<Card> Simulate(Card card) {
         Card[] tokens = new Card[Math.min(card.getAttack(), 7)];
         for (int i = 0; i < card.getAttack(); i++) {
             tokens[i] = (Card) Main.Tokens.get(Token.RAT).clone();
         }
-        addTokens(card.isGold(), index, tokens, owner);
-        return null;
+        return getTokens(card.isGold(), tokens);
     }
 
+    @Override
+    public void Simulate(Card card, Player player) {
 
+    }
 }

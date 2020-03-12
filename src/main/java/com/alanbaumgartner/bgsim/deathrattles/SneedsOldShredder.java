@@ -5,21 +5,29 @@ import com.alanbaumgartner.bgsim.Main;
 import com.alanbaumgartner.bgsim.Player;
 import com.alanbaumgartner.bgsim.enums.DType;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SneedsOldShredder extends Deathrattle {
 
-    static {
+    @Override
+    public void init() {
+
         type = DType.SUMMON;
     }
 
     @Override
-    public List<Card> Simulate(Card card, Player owner, Player opponent, int index) {
-        owner.removeCard(card);
-        owner.addCard(index, (Card) Main.getRandomLegendary().clone());
+    public List<Card> Simulate(Card card) {
+        List<Card> summons = new ArrayList<>();
+        summons.add((Card) Main.getRandomLegendary().clone());
         if (card.isGold()) {
-            owner.addCard(index, (Card) Main.getRandomLegendary().clone());
+            summons.add((Card) Main.getRandomLegendary().clone());
         }
-        return null;
+        return summons;
+    }
+
+    @Override
+    public void Simulate(Card card, Player player) {
+
     }
 }
