@@ -19,9 +19,9 @@ public class PilotedShredder extends Deathrattle {
 	@Override
 	public List<Card> Simulate(Card card) {
 		List<Card> summons = new ArrayList<>();
-		summons.add((Card) Main.getRandomTwoCost().clone());
+		summons.add(Main.getRandomTwoCost());
 		if (card.isGold()) {
-			summons.add((Card) Main.getRandomTwoCost().clone());
+			summons.add(Main.getRandomTwoCost());
 		}
 		return summons;
 

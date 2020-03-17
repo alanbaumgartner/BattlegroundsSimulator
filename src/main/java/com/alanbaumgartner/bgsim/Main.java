@@ -24,16 +24,16 @@ public class Main {
 	/**
 	 *
 	 */
+	public static Map<String, Card> Minions;
+	public static Map<String, Card> GoldMinions;
+	/**
+	 *
+	 */
 	static ArrayList<Card> All;
 	/**
 	 *
 	 */
 	static Map<String, Card> BGAll;
-	/**
-	 *
-	 */
-	static Map<String, Card> Minions;
-	static Map<String, Card> GoldMinions;
 	/**
 	 *
 	 */
@@ -108,7 +108,7 @@ public class Main {
 			}
 			if (c.getTechLevel() != null) {
 				for (Token s : Token.values()) {
-					if (s.toString().equalsIgnoreCase(c.getName().replaceAll("[^a-zA-Z0-9]", ""))) {
+					if (s.toString().equalsIgnoreCase(c.getName().replaceAll("[^a-zA-Z0-9]", "")) && !c.getId().contains("BaconUps")) {
 //                    if (s.toString().equalsIgnoreCase(c.getName().replace(" ", "").replace("-", ""))) {
 						Tokens.put(s, c);
 					}
@@ -176,15 +176,15 @@ public class Main {
 	}
 
 	public static Card getRandomDeathrattle() {
-		return (Card) DeathrattlePool.values().toArray()[(Main.getRandomInteger(DeathrattlePool.size()))];
+		return ((Card) DeathrattlePool.values().toArray()[(Main.getRandomInteger(DeathrattlePool.size()))]).clone();
 	}
 
 	public static Card getRandomLegendary() {
-		return (Card) LegendaryPool.values().toArray()[(Main.getRandomInteger(LegendaryPool.size()))];
+		return ((Card) LegendaryPool.values().toArray()[(Main.getRandomInteger(LegendaryPool.size()))]).clone();
 	}
 
 	public static Card getRandomTwoCost() {
-		return (Card) TwoCostPool.values().toArray()[(Main.getRandomInteger(TwoCostPool.size()))];
+		return ((Card) TwoCostPool.values().toArray()[(Main.getRandomInteger(TwoCostPool.size()))]).clone();
 	}
 
 	public static Deathrattle getDeathrattle(Card card) {
@@ -194,15 +194,14 @@ public class Main {
 	}
 
 	public static Card getCard(String name, Map<String, Card> map) {
-		return (Card) map.get(name).clone();
+		return map.get(name).clone();
 	}
 
 	public static void main(String[] args) {
 		Player one = new Player(new ArrayList(Arrays.asList(getCard("Ghastcoiler", Minions))));
 		Player two = new Player(new ArrayList(Arrays.asList(getCard("Ghastcoiler", Minions))));
-		Simulation sim = new Simulation(one, two, 10000);
+		Simulation sim = new Simulation(one, two, 1);
 		sim.simulate();
-
 	}
 
 }

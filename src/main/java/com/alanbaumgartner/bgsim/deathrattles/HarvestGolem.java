@@ -18,7 +18,7 @@ public class HarvestGolem extends Deathrattle {
 
 	@Override
 	public List<Card> Simulate(Card card) {
-		Card[] tokens = {(Card) token.clone()};
+		Card[] tokens = {token.clone()};
 		return getTokens(card.isGold(), tokens);
 	}
 

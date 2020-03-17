@@ -14,7 +14,7 @@ public class BronzeWarden extends Deathrattle {
 	@Override
 	public List<Card> Simulate(Card card) {
 		List<Card> summons = new ArrayList<>();
-		Card c = (Card) token.clone();
+		Card c = token.clone();
 		if (!card.hasReborn()) {
 			if (card.isGold()) {
 				c.setAttack(4);
@@ -34,7 +34,7 @@ public class BronzeWarden extends Deathrattle {
 
 	@Override
 	public void init() {
-		token = (Card) Main.Tokens.get(Token.BRONZEWARDEN).clone();
+		token = Main.Tokens.get(Token.BRONZEWARDEN).clone();
 		type = DType.SUMMON;
 	}
 }

@@ -3,18 +3,20 @@ package com.alanbaumgartner.bgsim;
 import com.alanbaumgartner.bgsim.enums.Hero;
 import com.alanbaumgartner.bgsim.enums.Mechanics;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Player {
 
+	public List<Card> deadMechs = new ArrayList<>();
 	private int health;
 	private int tier;
 	private Hero hero;
 	private List<Card> minions;
 	private Deque<Card> attackers;
-
-	private Set<Card> deadMechs;
 
 	public Player(Player copy) {
 		health = copy.health;
@@ -22,7 +24,7 @@ public class Player {
 		hero = copy.hero;
 		minions = new ArrayList<>();
 		for (Card c : copy.getMinions()) {
-			Card cloned = (Card) c.clone();
+			Card cloned = c.clone();
 			cloned.setPlayer(this);
 			minions.add(cloned);
 		}
@@ -46,14 +48,14 @@ public class Player {
 	}
 
 	public List<Card> getTauntMinions() {
-		ArrayList<Card> list = new ArrayList<>();
-		for (Card c : getAliveMinions()) {
-			if (c.getMechanics().contains(Mechanics.TAUNT)) {
-				list.add(c);
-			}
-		}
-		return list;
-//        return minions.stream().filter(c -> c.getMechanics().contains(Mechanics.TAUNT)).collect(Collectors.toList());
+//		ArrayList<Card> list = new ArrayList<>();
+//		for (Card c : getAliveMinions()) {
+//			if (c.getMechanics().contains(Mechanics.TAUNT)) {
+//				list.add(c);
+//			}
+//		}
+//		return list;
+		return minions.stream().filter(c -> c.getMechanics().contains(Mechanics.TAUNT)).collect(Collectors.toList());
 	}
 
 	public List<Card> getDeadMinions() {
@@ -64,10 +66,6 @@ public class Player {
 		return minions.stream().filter(c -> !c.isDead()).collect(Collectors.toList());
 	}
 
-//    public List<Card> getDeadMinions() {
-//
-//    }
-
 	public Integer getNumMinions() {
 		return minions.size();
 	}
@@ -77,7 +75,16 @@ public class Player {
 	}
 
 	public Card getNextAttacker() {
-		return requeue();
+		int iter = 0;
+		Card c = requeue();
+		while (c.getAttack() == 0 || c.isDead()) {
+			c = requeue();
+			if (iter > 20) {
+				return null;
+			}
+			iter++;
+		}
+		return c;
 	}
 
 	private Card requeue() {

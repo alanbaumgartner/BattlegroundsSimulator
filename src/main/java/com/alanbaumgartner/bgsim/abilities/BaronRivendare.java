@@ -6,7 +6,7 @@ import java.beans.PropertyChangeEvent;
 
 public class BaronRivendare extends Ability {
 
-	static {
+	public void init() {
 		type = AType.PASSIVE;
 	}
 

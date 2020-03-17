@@ -11,14 +11,14 @@ import java.util.List;
 public class InfestedWolf extends Deathrattle {
 
 	public void init() {
-		token = (Card) Main.Tokens.get(Token.SPIDER).clone();
+		token = Main.Tokens.get(Token.SPIDER).clone();
 		type = DType.SUMMON;
 	}
 
 
 	@Override
 	public List<Card> Simulate(Card card) {
-		Card[] tokens = {(Card) token.clone(), (Card) token.clone()};
+		Card[] tokens = {token.clone(), token.clone()};
 		return getTokens(card.isGold(), tokens);
 	}
 

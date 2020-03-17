@@ -12,7 +12,7 @@ public class RatPack extends Deathrattle {
 
 
 	public void init() {
-		token = (Card) Main.Tokens.get(Token.RAT).clone();
+		token = Main.Tokens.get(Token.RAT).clone();
 		type = DType.SUMMON;
 	}
 
@@ -20,7 +20,7 @@ public class RatPack extends Deathrattle {
 	public List<Card> Simulate(Card card) {
 		Card[] tokens = new Card[Math.min(card.getAttack(), 7)];
 		for (int i = 0; i < tokens.length; i++) {
-			tokens[i] = (Card) Main.Tokens.get(Token.RAT).clone();
+			tokens[i] = Main.Tokens.get(Token.RAT).clone();
 		}
 		return getTokens(card.isGold(), tokens);
 	}

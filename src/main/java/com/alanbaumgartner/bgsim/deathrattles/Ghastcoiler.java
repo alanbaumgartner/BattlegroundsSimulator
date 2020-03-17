@@ -13,11 +13,12 @@ public class Ghastcoiler extends Deathrattle {
 	@Override
 	public List<Card> Simulate(Card card) {
 		List<Card> summons = new ArrayList<>();
-		summons.add((Card) Main.getRandomDeathrattle().clone());
-		summons.add((Card) Main.getRandomDeathrattle().clone());
+		summons.add(Main.getRandomDeathrattle().clone());
+		summons.add(Main.getRandomDeathrattle().clone());
 		if (card.isGold()) {
-			summons.add((Card) Main.getRandomDeathrattle().clone());
-			summons.add((Card) Main.getRandomDeathrattle().clone());
+			System.out.println("here");
+			summons.add(Main.getRandomDeathrattle().clone());
+			summons.add(Main.getRandomDeathrattle().clone());
 		}
 		return summons;
 	}

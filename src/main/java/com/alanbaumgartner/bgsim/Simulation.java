@@ -2,6 +2,7 @@ package com.alanbaumgartner.bgsim;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
+import java.text.DecimalFormat;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -63,43 +64,44 @@ public class Simulation {
 
 	}
 
-	public Double getPercentile(int percentile) {
-		return stats.getPercentile(percentile);
+	public int getPercentile(int percentile) {
+		return (int) Math.round(stats.getPercentile(percentile));
 	}
 
 	public long getMeanScore() {
 		return Math.round(stats.getMean());
 	}
 
-	public Double getWinPercent() {
+	public double getWinPercent() {
 		return ((wins[0].doubleValue() / iterations.doubleValue()) * 100);
 	}
 
-	public Double getTiePercent() {
+	public double getTiePercent() {
 		return ((wins[2].doubleValue() / iterations.doubleValue()) * 100);
 	}
 
-	public Double getLosePercent() {
+	public double getLosePercent() {
 		return ((wins[1].doubleValue() / iterations.doubleValue()) * 100);
 	}
 
 	public String statsToString() {
+		DecimalFormat df = new DecimalFormat("##.##");
 		return "Win Percent: " +
-				getWinPercent() + "\n" +
+				df.format(getWinPercent()) + "\n" +
 				"Lose Percent: " +
-				getLosePercent() + "\n" +
+				df.format(getLosePercent()) + "\n" +
 				"Tie Percent: " +
-				getTiePercent() + "\n" +
+				df.format(getTiePercent()) + "\n" +
 				"Mean Score: " +
-				getMeanScore() + "\n" +
+				df.format(getMeanScore()) + "\n" +
 				"Percentiles (1, 5 34, 50, 68, 95, 99):" + "\n" +
-				getPercentile(1) + ", " +
-				getPercentile(5) + ", " +
-				getPercentile(34) + ", " +
-				getPercentile(50) + ", " +
-				getPercentile(68) + ", " +
-				getPercentile(95) + ", " +
-				getPercentile(99) + "\n";
+				df.format(getPercentile(1)) + ", " +
+				df.format(getPercentile(5)) + ", " +
+				df.format(getPercentile(34)) + ", " +
+				df.format(getPercentile(50)) + ", " +
+				df.format(getPercentile(68)) + ", " +
+				df.format(getPercentile(95)) + ", " +
+				df.format(getPercentile(99)) + "\n";
 	}
 
 }

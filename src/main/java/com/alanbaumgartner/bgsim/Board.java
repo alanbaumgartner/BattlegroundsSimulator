@@ -3,6 +3,7 @@ package com.alanbaumgartner.bgsim;
 import com.alanbaumgartner.bgsim.handlers.AbilityHandler;
 import com.alanbaumgartner.bgsim.handlers.DeathrattleHandler;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class Board implements Runnable {
@@ -91,10 +92,12 @@ public class Board implements Runnable {
 	}
 
 	public void doStep() {
+		printState("Start");
 		attackPhase();
 		if (deathPhase() > 0) {
 			timeoutCounter = 0;
 		}
+		printState("End");
 		step++;
 		playerTurn = 1 - playerTurn;
 	}
@@ -105,6 +108,9 @@ public class Board implements Runnable {
 
 	private void attackPhase() {
 		Card attacker = players[playerTurn].getNextAttacker();
+		if (attacker == null) {
+			return;
+		}
 		Card defender = getDefendingMinion();
 		attacker.attack(defender);
 	}
@@ -113,6 +119,36 @@ public class Board implements Runnable {
 		players[0].getMinions().removeAll(players[0].getDeadMinions());
 		players[1].getMinions().removeAll(players[1].getDeadMinions());
 		return deathrattleHandler.getDeadThisTurn();
+	}
+
+	public void printState(String soe) {
+		String leftAlignFormat = "| %-20s | %-6s | %-6s | %-20s | %-6s | %-6s |%n";
+		String roundFormat = "| %-79s |%n";
+		System.out.format("+---------------------------------------------------------------------------------+%n");
+		System.out.format(roundFormat, "Round " + step +  " " +soe);
+		System.out.format("+----------------------------------------+----------------------------------------+%n");
+		System.out.format("| Player One                             | Player Two                             |%n");
+		System.out.format("+----------------------+--------+--------+----------------------+--------+--------+%n");
+		System.out.format("| Minion               | Attack | Health | Minion               | Attack | Health |%n");
+		System.out.format("+----------------------+--------+--------+----------------------+--------+--------+%n");
+
+		Iterator<Card> iter1 = players[0].getAliveMinions().iterator();
+		Iterator<Card> iter2 = players[1].getAliveMinions().iterator();
+
+		while (iter1.hasNext() || iter2.hasNext()) {
+			if (iter1.hasNext() && iter2.hasNext()) {
+				Card c1 = iter1.next();
+				Card c2 = iter2.next();
+				System.out.format(leftAlignFormat, c1.getName(), c1.getAttack(), c1.getHealth(), c2.getName(), c2.getAttack(), c2.getHealth());
+			} else if (iter1.hasNext()) {
+				Card c1 = iter1.next();
+				System.out.format(leftAlignFormat, c1.getName(), c1.getAttack(), c1.getHealth(), "", "", "");
+			} else {
+				Card c2 = iter2.next();
+				System.out.format(leftAlignFormat, "", "", "", c2.getName(), c2.getAttack(), c2.getHealth());
+			}
+		}
+		System.out.format("+----------------------+--------+--------+----------------------+--------+--------+%n");
 	}
 
 	@Override

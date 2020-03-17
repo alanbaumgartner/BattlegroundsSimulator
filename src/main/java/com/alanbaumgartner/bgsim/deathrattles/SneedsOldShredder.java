@@ -19,9 +19,9 @@ public class SneedsOldShredder extends Deathrattle {
 	@Override
 	public List<Card> Simulate(Card card) {
 		List<Card> summons = new ArrayList<>();
-		summons.add((Card) Main.getRandomLegendary().clone());
+		summons.add(Main.getRandomLegendary().clone());
 		if (card.isGold()) {
-			summons.add((Card) Main.getRandomLegendary().clone());
+			summons.add(Main.getRandomLegendary().clone());
 		}
 		return summons;
 	}

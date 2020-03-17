@@ -5,7 +5,7 @@ import com.alanbaumgartner.bgsim.enums.AType;
 import java.beans.PropertyChangeEvent;
 
 public class Siegebreaker extends Ability {
-	static {
+	public void init() {
 		type = AType.PASSIVE;
 	}
 

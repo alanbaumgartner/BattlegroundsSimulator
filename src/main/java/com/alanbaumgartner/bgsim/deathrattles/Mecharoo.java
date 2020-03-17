@@ -11,14 +11,14 @@ import java.util.List;
 public class Mecharoo extends Deathrattle {
 
 	public void init() {
-		token = (Card) Main.Tokens.get(Token.JOEBOT).clone();
+		token = Main.Tokens.get(Token.JOEBOT).clone();
 		type = DType.SUMMON;
 	}
 
 
 	@Override
 	public List<Card> Simulate(Card card) {
-		Card[] tokens = {(Card) token.clone()};
+		Card[] tokens = {token.clone()};
 		return getTokens(card.isGold(), tokens);
 	}
 

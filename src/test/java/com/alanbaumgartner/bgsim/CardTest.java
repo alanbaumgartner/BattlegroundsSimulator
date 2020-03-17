@@ -1,5 +1,7 @@
 //package com.alanbaumgartner.bgsim;
 //
+//import static org.ju
+//
 //import static org.junit.jupiter.api.Assertions.*;
 //
 //class CardTest {

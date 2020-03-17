@@ -76,9 +76,9 @@ public class Card implements Cloneable {
 	}
 
 	@Override
-	public Object clone() {
+	public Card clone() {
 		try {
-			return super.clone();
+			return (Card) super.clone();
 		} catch (CloneNotSupportedException ex) {
 			return null;
 		}
@@ -116,7 +116,15 @@ public class Card implements Cloneable {
 	}
 
 	public void setDead(Boolean dead) {
+		if (this.dead) {
+			return;
+		}
 		this.dead = dead;
+		if (this.getRace() == Race.MECHANICAL) {
+			if (this.getPlayer().deadMechs.size() < 2) {
+				this.getPlayer().deadMechs.add(this);
+			}
+		}
 		deathrattleHandler.update(this);
 	}
 

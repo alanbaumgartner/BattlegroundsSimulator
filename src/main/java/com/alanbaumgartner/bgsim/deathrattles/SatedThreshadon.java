@@ -12,14 +12,14 @@ public class SatedThreshadon extends Deathrattle {
 
 
 	public void init() {
-		token = (Card) Main.Tokens.get(Token.PLANT).clone();
+		token = Main.Tokens.get(Token.PLANT).clone();
 		type = DType.SUMMON;
 	}
 
 
 	@Override
 	public List<Card> Simulate(Card card) {
-		Card[] tokens = {(Card) token.clone(), (Card) token.clone(), (Card) token.clone()};
+		Card[] tokens = {token.clone(), token.clone(), token.clone()};
 		return getTokens(card.isGold(), tokens);
 	}
 
